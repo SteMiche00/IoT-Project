@@ -1,1 +1,7 @@
 SmartHomeCollector/target
+CoAP-network/border-router/build
+CoAP-network/light-actuator/build
+CoAP-network/light-sensor/build
+CoAP-network/presence-sensor/build
+CoAP-network/temperature-actuator/build
+CoAP-network/temperature-sensor/build
