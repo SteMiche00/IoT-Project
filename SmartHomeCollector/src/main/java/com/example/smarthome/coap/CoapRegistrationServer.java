@@ -1,11 +1,14 @@
 package com.example.smarthome.coap;
 
 import com.example.smarthome.coap.DeviceRegistry;
+import com.example.smarthome.db.DatabaseManager;
+
 import org.eclipse.californium.core.CoapServer;
 import org.eclipse.californium.core.CoapResource;
 import org.eclipse.californium.core.coap.CoAP;
 import org.eclipse.californium.core.server.resources.CoapExchange;
 
+import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 
 public class CoapRegistrationServer extends CoapServer {
@@ -23,8 +26,12 @@ public class CoapRegistrationServer extends CoapServer {
         public void handlePOST(CoapExchange exchange) {
             String type = exchange.getRequestText(); 
             String ip = exchange.getSourceAddress().getHostAddress();
+            int port = exchange.getSourcePort();
 
             DeviceRegistry.registerDevice(type, ip);
+
+            DatabaseManager.insertSensor(type, ip, port);
+            
             exchange.respond(CoAP.ResponseCode.CREATED, "Registered".getBytes(StandardCharsets.UTF_8));
         }
 

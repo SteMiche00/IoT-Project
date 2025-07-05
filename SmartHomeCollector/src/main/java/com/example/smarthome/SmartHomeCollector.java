@@ -22,9 +22,7 @@ public class SmartHomeCollector {
         coapServer.start();
         System.out.println("[INFO] CoAP server started on port 5683");
 
-        SensorPoller sensorPoller = new SensorPoller();
-        sensorPoller.startPolling();
-        System.out.println("[INFO] Sensor polling started");
+       
 
         // 2. Avvia sensori finti
         startFakeSensor("temperature", 5684, "sensor/temperature", "22");
@@ -33,6 +31,9 @@ public class SmartHomeCollector {
         startFakeActuator("light", 5687, "actuator/light");
         startFakeActuator("temperature", 5688, "actuator/temperature");
 
+        SensorPoller sensorPoller = new SensorPoller();
+        sensorPoller.startPolling();
+        
         // 3. Mostra comandi
         printHelp();
 

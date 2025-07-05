@@ -2,6 +2,8 @@ package com.example.smarthome.coap;
 
 import com.example.smarthome.coap.DeviceRegistry;
 import org.eclipse.californium.core.CoapClient;
+import org.eclipse.californium.core.CoapResponse;
+import org.eclipse.californium.core.coap.Response;
 
 import java.time.LocalDateTime;
 import java.util.Map;
@@ -13,36 +15,46 @@ public class SensorPoller {
     private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 
     public void startPolling() {
-        scheduler.scheduleAtFixedRate(this::pollSensors, 0, 10, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(this::pollSensors, 5, 10, TimeUnit.SECONDS);
+        System.out.println("[POLL] Poller avviato.");
     }
 
     private void pollSensors() {
-        for (Map.Entry<String, String> entry : DeviceRegistry.getAll().entrySet()) {
+        Map<String, String> devices = DeviceRegistry.getAll();
+
+        if (devices.isEmpty()) {
+            System.out.println("[POLL] Nessun dispositivo registrato.");
+            return;
+        }
+
+        for (Map.Entry<String, String> entry : devices.entrySet()) {
             String type = entry.getKey();
             String ip = entry.getValue();
 
             String path = null;
             switch (type) {
-                case "temperature":
-                    path = "sensor/temperature";
-                    break;
-                case "light":
-                    path = "sensor/light";
-                    break;
-                case "humidity":
-                    path = "sensor/humidity";
-                    break;
-}
+                case "temperature" : path = "sensor/temperature"; break;
+                case "light"       : path = "sensor/light"; break;
+                case "huidity"     : path = "sensor/humidity"; break;
+                default            : path = null; break;
+            }
+
             if (path == null) continue;
 
             String uri = "coap://" + ip + "/" + path;
             CoapClient client = new CoapClient(uri);
 
             try {
-                String payload = client.get().getResponseText();
-                System.out.printf("[SensorPoller] %s @ %s = %s%n", type, ip, payload);
+                CoapResponse response = client.get();
+                if (response == null) {
+                    System.err.println("[POLL] Nessuna risposta da " + type);
+                    continue;
+                }
+
+                String payload = response.getResponseText();
+                System.out.printf("[POLL] %s @ %s = %s%n", type, ip, payload);
             } catch (Exception e) {
-                System.err.printf("[SensorPoller] Errore con %s @ %s: %s%n", type, ip, e.getMessage());
+                System.err.printf("[POLL] Errore con %s @ %s: %s%n", type, ip, e.getMessage());
             }
         }
     }
