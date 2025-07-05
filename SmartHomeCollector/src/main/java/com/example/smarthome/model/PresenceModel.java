@@ -1,5 +1,5 @@
-package main.java.com.example.smarthome.model;
+package com.example.smarthome.model;
 
-public class PresenceMode {
+public class PresenceModel {
     
 }
