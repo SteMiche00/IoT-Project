@@ -6,8 +6,8 @@
 static void res_get_handler(coap_message_t *request, coap_message_t *response,
                             uint8_t *buffer, uint16_t preferred_size, int32_t *offset);
 
-RESOURCE(res_temp,
-         "title=\"Temperature\";rt=\"TemperatureSensor\"",
+RESOURCE(res_humidity,
+         "title=\"Humidity\";rt=\"HumiditySensor\"",
          res_get_handler,
          NULL,
          NULL,
@@ -17,27 +17,26 @@ static void
 res_get_handler(coap_message_t *request, coap_message_t *response,
                 uint8_t *buffer, uint16_t preferred_size, int32_t *offset)
 {
-  // Random temperature in the range [-10; 40]C, with 3 decimals, multiplied by 1000
-  int temp = -10000 + (rand() % 50001); 
-  int len = snprintf((char *)buffer, preferred_size, "%d", temp);
+  int humidity = rand() % 100001; // [0; 100000] --> from 0% to 100% humidity value
+  int len = snprintf((char *)buffer, preferred_size, "%d", humidity);
 
-  printf("[SENSOR TEMP] Received request on /sensors/temp - value: %.3f C\n", temp / 1000.0);
+  printf("[SENSOR HUMIDITY] Received request on /sensors/humidity - value: %.3f \n", humidity / 1000.0);
 
   coap_set_header_content_format(response, TEXT_PLAIN);
   coap_set_payload(response, buffer, len);
 }
 
-PROCESS(coap_sensor_process, "CoAP Temperature Sensor");
-AUTOSTART_PROCESSES(&coap_sensor_process);
+PROCESS(coap_humidity_sensor_process, "CoAP Humidity Sensor");
+AUTOSTART_PROCESSES(&coap_humidity_sensor_process);
 
-PROCESS_THREAD(coap_sensor_process, ev, data)
+PROCESS_THREAD(coap_humidity_sensor_process, ev, data)
 {
   PROCESS_BEGIN();
 
-  printf("Starting CoAP Temperature Sensor\n");
+  printf("Starting CoAP Humidity Sensor\n");
 
   coap_engine_init();
-  coap_activate_resource(&res_temp, "sensors/temp");
+  coap_activate_resource(&res_humidity, "sensors/humidity");
 
   PROCESS_END();
 }

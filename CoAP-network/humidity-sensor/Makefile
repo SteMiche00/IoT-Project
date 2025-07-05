@@ -1,4 +1,4 @@
-CONTIKI_PROJECT = presence-sensor
+CONTIKI_PROJECT = humidity-sensor
 
 all: $(CONTIKI_PROJECT)
 
