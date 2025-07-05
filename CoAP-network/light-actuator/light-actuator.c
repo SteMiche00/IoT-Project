@@ -5,14 +5,21 @@
 #include <stdio.h>
 #include <string.h>
 #include "dev/serial-line.h"
+#include "registration.h"
 
 #include "../ml-classifier/room_occupancy_forecast.h"
 
-#define SENSOR_TEMPERATURE "coap://[fe80::202:2:2:2]"
-#define SENSOR_LIGHT       "coap://[fe80::203:3:3:3]"
-#define SENSOR_HUMIDITY    "coap://[fe80::204:4:4:4]"
 #define OCCUPIED  0
 #define NOT_OCCUPIED  1
+
+#define LOG_MODULE "LightActuator"
+#define LOG_LEVEL LOG_LEVEL_INFO
+
+#define SERVER_EP "coap://[fd00::1]/register" 
+
+static char* service_name = "actuator_light";
+static char* service_type = "light";
+static char* service_resource = "/actuators/light";
 
 static struct etimer et;
 static coap_endpoint_t server_ep;

@@ -28,11 +28,11 @@ public class SensorPoller {
         }
 
         for (Map.Entry<String, String> entry : devices.entrySet()) {
-            String type = entry.getKey();
+            String name = entry.getKey();
             String ip = entry.getValue();
 
             String path = null;
-            switch (type) {
+            switch (name) {
                 case "temperature" : path = "sensor/temperature"; break;
                 case "light"       : path = "sensor/light"; break;
                 case "huidity"     : path = "sensor/humidity"; break;
@@ -47,14 +47,14 @@ public class SensorPoller {
             try {
                 CoapResponse response = client.get();
                 if (response == null) {
-                    System.err.println("[POLL] Nessuna risposta da " + type);
+                    System.err.println("[POLL] Nessuna risposta da " + name);
                     continue;
                 }
 
                 String payload = response.getResponseText();
-                System.out.printf("[POLL] %s @ %s = %s%n", type, ip, payload);
+                System.out.printf("[POLL] %s @ %s = %s%n", name, ip, payload);
             } catch (Exception e) {
-                System.err.printf("[POLL] Errore con %s @ %s: %s%n", type, ip, e.getMessage());
+                System.err.printf("[POLL] Errore con %s @ %s: %s%n", name, ip, e.getMessage());
             }
         }
     }

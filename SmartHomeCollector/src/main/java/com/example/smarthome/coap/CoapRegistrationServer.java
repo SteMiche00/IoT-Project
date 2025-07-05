@@ -28,9 +28,9 @@ public class CoapRegistrationServer extends CoapServer {
             String ip = exchange.getSourceAddress().getHostAddress();
             int port = exchange.getSourcePort();
 
-            DeviceRegistry.registerDevice(type, ip);
+            DeviceRegistry.registerDevice(name, ip);
 
-            DatabaseManager.insertSensor(type, ip, port);
+            DatabaseManager.insertSensor(name, ip, port);
             
             exchange.respond(CoAP.ResponseCode.CREATED, "Registered".getBytes(StandardCharsets.UTF_8));
         }

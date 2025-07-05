@@ -8,11 +8,17 @@
 
 #include "../ml-classifier/room_occupancy_forecast.h"
 
-#define SENSOR_TEMPERATURE "coap://[fe80::202:2:2:2]"
-#define SENSOR_LIGHT       "coap://[fe80::203:3:3:3]"
-#define SENSOR_HUMIDITY    "coap://[fe80::204:4:4:4]"
 #define OCCUPIED  0
 #define NOT_OCCUPIED  1
+
+#define LOG_MODULE "TempActuator"
+#define LOG_LEVEL LOG_LEVEL_INFO
+
+#define SERVER_EP "coap://[fd00::1]/register" 
+
+static char* service_name = "actuator_temp";
+static char* service_type = "temp";
+static char* service_resource = "/actuators/temp";
 
 static struct etimer et;
 static coap_endpoint_t server_ep;
