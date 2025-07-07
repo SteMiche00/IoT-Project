@@ -28,7 +28,6 @@ static char* service_name = "sensor_light";
 // static char* service_type = "light";
 // static char* service_resource = "/sensors/light";
 
-
 static struct etimer reg_timer;
 static struct etimer connectivity_timer;
 static int last_light_value = 0;
@@ -114,7 +113,7 @@ PROCESS_THREAD(coap_light_sensor_process, ev, data)
   }
 */
   while(!is_connected()){
-    etimer_reset(&connectivity_timer);
+    etimer_set(&connectivity_timer, CLOCK_SECOND * 5);
 		PROCESS_WAIT_UNTIL(etimer_expired(&connectivity_timer));
   }
 
@@ -132,6 +131,7 @@ PROCESS_THREAD(coap_light_sensor_process, ev, data)
     etimer_set(&reg_timer, CLOCK_SECOND * 5);
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&reg_timer));
   }
+  
   static struct etimer sensor_timer;
   etimer_set(&sensor_timer, CLOCK_SECOND * 10);
 
