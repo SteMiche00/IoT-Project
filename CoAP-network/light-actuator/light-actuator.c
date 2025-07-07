@@ -15,7 +15,7 @@
 #define LOG_MODULE "LightActuator"
 #define LOG_LEVEL LOG_LEVEL_INFO
 
-#define SERVER_EP "coap://[fd00::1]/register" 
+#define SERVER_EP "coap://[fd00::1]/registration" 
 
 static char* service_name = "actuator_light";
 static char* service_type = "light";

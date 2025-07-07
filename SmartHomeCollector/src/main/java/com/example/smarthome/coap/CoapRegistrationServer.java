@@ -8,7 +8,6 @@ import org.eclipse.californium.core.CoapResource;
 import org.eclipse.californium.core.coap.CoAP;
 import org.eclipse.californium.core.server.resources.CoapExchange;
 
-import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 
 public class CoapRegistrationServer extends CoapServer {
@@ -24,13 +23,14 @@ public class CoapRegistrationServer extends CoapServer {
 
         @Override
         public void handlePOST(CoapExchange exchange) {
+            System.out.println("Received registration request");
             String type = exchange.getRequestText(); 
             String ip = exchange.getSourceAddress().getHostAddress();
             int port = exchange.getSourcePort();
 
-            DeviceRegistry.registerDevice(name, ip);
+            DeviceRegistry.registerDevice(type, ip);
 
-            DatabaseManager.insertSensor(name, ip, port);
+            DatabaseManager.insertSensor(type, ip, port);
             
             exchange.respond(CoAP.ResponseCode.CREATED, "Registered".getBytes(StandardCharsets.UTF_8));
         }

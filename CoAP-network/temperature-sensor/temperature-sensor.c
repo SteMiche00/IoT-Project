@@ -7,7 +7,7 @@
 
 #define LOG_MODULE "TempSensor"
 #define LOG_LEVEL LOG_LEVEL_INFO
-#define SERVER_EP "coap://[fd00::1]/register" 
+#define SERVER_EP "coap://[fd00::1]/registration" 
 
 static struct etimer et;
 static char* service_name = "sensor_temp";
