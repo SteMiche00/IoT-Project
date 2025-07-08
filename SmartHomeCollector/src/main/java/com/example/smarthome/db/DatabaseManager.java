@@ -39,14 +39,13 @@ public class DatabaseManager {
         }
     }
 
-    public static List<DeviceModel> getAllSensorsExceptIp(String excludedIp) {
-    String sql = "SELECT * FROM device_registry WHERE ip <> ?";
+    public static List<DeviceModel> getAllSensors() {
+    String sql = "SELECT * FROM device_registry";
     List<DeviceModel> devices = new ArrayList<>();
 
     try (Connection conn = connect();
          PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-        stmt.setString(1, excludedIp);
+ 
         try (ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
                 int id = rs.getInt("id");

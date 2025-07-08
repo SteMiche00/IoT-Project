@@ -10,6 +10,7 @@ import org.eclipse.californium.core.coap.CoAP;
 import org.eclipse.californium.core.server.resources.CoapExchange;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CoapRegistrationServer extends CoapServer {
@@ -66,18 +67,29 @@ public class CoapRegistrationServer extends CoapServer {
         @Override
         public void handleGET(CoapExchange exchange) {
             System.out.println("Discovery request received");
-            String type = exchange.getRequestText(); 
-            String ip = exchange.getSourceAddress().getHostAddress();
-            int port = exchange.getSourcePort();
-
+        
             try{
-                List<DeviceModel> devices = DatabaseManager.getAllSensorsExceptIp(ip);
+                List<DeviceModel> devices = DatabaseManager.getAllSensors();
                 if(devices.isEmpty()) {
                     exchange.respond(CoAP.ResponseCode.CONTENT, "No devices found".getBytes(StandardCharsets.UTF_8));
                     return;
                 }
-                StringBuilder response = new StringBuilder();
+
+                List<DeviceModel> sensors = new ArrayList<DeviceModel>();
                 for (DeviceModel device : devices) {
+                    if (device.getName() != null && device.getName().toLowerCase().contains("sensor")) {
+                        sensors.add(device);
+                    }
+                }
+
+                if(sensors.isEmpty()) {
+                    exchange.respond(CoAP.ResponseCode.CONTENT, "No sensors found".getBytes(StandardCharsets.UTF_8));
+                    return;
+                }
+
+
+                StringBuilder response = new StringBuilder();
+                for (DeviceModel device : sensors) {
                     response.append(device.getName())
                             .append("@")
                             .append(device.getIp())
