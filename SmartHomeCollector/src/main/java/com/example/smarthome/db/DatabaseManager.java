@@ -1,10 +1,14 @@
 package com.example.smarthome.db;
 
+import com.example.smarthome.model.DeviceModel;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.sql.Timestamp;
 
 public class DatabaseManager {
@@ -30,8 +34,36 @@ public class DatabaseManager {
             stmt.executeUpdate();
             System.out.printf("[DB] Device successfully registered: %s @ %s:%d%n", name, ip, port);
         } catch (SQLException e) {
-            System.err.println("[DB] Errore durante inserimento sensore: " + e.getMessage());
+            System.err.println("[DB] Error during device registration: " + e.getMessage());
+            throw new RuntimeException("Database error", e);
         }
     }
+
+    public static List<DeviceModel> getAllSensorsExceptIp(String excludedIp) {
+    String sql = "SELECT * FROM device_registry WHERE ip <> ?";
+    List<DeviceModel> devices = new ArrayList<>();
+
+    try (Connection conn = connect();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+        stmt.setString(1, excludedIp);
+        try (ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String ip = rs.getString("ip");
+                int port = rs.getInt("port");
+                devices.add(new DeviceModel(id, name, ip, port));
+            }
+        }
+
+    } catch (SQLException e) {
+        System.err.println("[DB] Error during filtered sensor retrieval: " + e.getMessage());
+        throw new RuntimeException("Database error", e);
+    }
+
+    return devices;
+}
+
 }
 

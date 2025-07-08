@@ -3,9 +3,8 @@ package com.example.smarthome.coap;
 import com.example.smarthome.coap.DeviceRegistry;
 import org.eclipse.californium.core.CoapClient;
 import org.eclipse.californium.core.CoapResponse;
-import org.eclipse.californium.core.coap.Response;
 
-import java.time.LocalDateTime;
+
 import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
