@@ -61,7 +61,7 @@ public class CoapRegistrationServer extends CoapServer {
 
     private static class DiscoveryResource extends CoapResource {
         public DiscoveryResource() {
-            super("discovery");
+            super("sensors-discovery");
         }
 
         @Override
@@ -87,18 +87,16 @@ public class CoapRegistrationServer extends CoapServer {
                     return;
                 }
 
-
-                StringBuilder response = new StringBuilder();
                 for (DeviceModel device : sensors) {
+                    StringBuilder response = new StringBuilder();
                     response.append(device.getName())
                             .append("@")
                             .append(device.getIp())
                             .append("-")
-                            .append(device.getPort())
-                            .append(";");
+                            .append(device.getPort());
+                    System.out.println("[DISCOVERY] Device found: " + response);
+                    exchange.respond(CoAP.ResponseCode.CONTENT, response.toString().getBytes(StandardCharsets.UTF_8));
                 }
-                System.out.println("[DISCOVERY] Devices found: " + response);
-                exchange.respond(CoAP.ResponseCode.CONTENT, response.toString().getBytes(StandardCharsets.UTF_8));
                 
             }
             catch (Exception e) {
