@@ -41,7 +41,7 @@ RESOURCE(res_temp,
 static void res_get_handler(coap_message_t *request, coap_message_t *response, uint8_t *buffer, uint16_t preferred_size, int32_t *offset) {
   int len = snprintf((char *)buffer, preferred_size, "%d", last_temp_value);
 
-  printf("[SENSOR TEMP] Received request on /sensors/temp - returning: %.2f °C\n", last_temp_value / 100.0);
+  printf("[SENSOR TEMP] Received request on /sensors/temp - returning: %.3f C\n", last_temp_value / 1000.0);
 
   coap_set_header_content_format(response, TEXT_PLAIN);
   coap_set_payload(response, buffer, len);
@@ -80,8 +80,6 @@ PROCESS_THREAD(coap_temp_sensor_process, ev, data)
 {
   PROCESS_BEGIN();
 
-  etimer_set(&sensor_timer, CLOCK_SECOND * 10);
-
   printf("[SENSOR TEMP] Starting CoAP Temperature Sensor\n");
 
   coap_engine_init();
@@ -106,11 +104,13 @@ PROCESS_THREAD(coap_temp_sensor_process, ev, data)
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&reg_timer));
   }
 
+  etimer_set(&sensor_timer, CLOCK_SECOND * 10);
+
   while(1) {
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&sensor_timer));
 
-    last_temp_value = (rand() % 4001) - 1000; // -10.00°C to +30.00°C
-    printf("[SENSOR TEMP] New temperature value generated: %.2f °C\n", last_temp_value / 100.0);
+    last_temp_value = (rand() % 40001) - 10000; 
+    printf("[SENSOR TEMP] New temperature value generated: %.3f C\n", last_temp_value / 1000.0);
 
     etimer_reset(&sensor_timer);
   }

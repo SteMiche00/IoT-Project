@@ -20,7 +20,7 @@ public class DatabaseManager {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 
-    public static void insertSensor(String name, String ip, int port) {
+    public static void insertDevice(String name, String ip, int port) {
 
         System.out.printf("[DB] Trying to register device: %s @ %s:%d%n", name, ip, port);
 
@@ -39,30 +39,30 @@ public class DatabaseManager {
         }
     }
 
-    public static List<DeviceModel> getAllSensors() {
-    String sql = "SELECT * FROM device_registry";
-    List<DeviceModel> devices = new ArrayList<>();
+    public static List<DeviceModel> getAllDevices() {
+        String sql = "SELECT * FROM device_registry";
+        List<DeviceModel> devices = new ArrayList<>();
 
-    try (Connection conn = connect();
-         PreparedStatement stmt = conn.prepareStatement(sql)) {
- 
-        try (ResultSet rs = stmt.executeQuery()) {
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String name = rs.getString("name");
-                String ip = rs.getString("ip");
-                int port = rs.getInt("port");
-                devices.add(new DeviceModel(id, name, ip, port));
+        try (Connection conn = connect();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+    
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    int id = rs.getInt("id");
+                    String name = rs.getString("name");
+                    String ip = rs.getString("ip");
+                    int port = rs.getInt("port");
+                    devices.add(new DeviceModel(id, name, ip, port));
+                }
             }
+
+        } catch (SQLException e) {
+            System.err.println("[DB] Error during filtered sensor retrieval: " + e.getMessage());
+            throw new RuntimeException("Database error", e);
         }
 
-    } catch (SQLException e) {
-        System.err.println("[DB] Error during filtered sensor retrieval: " + e.getMessage());
-        throw new RuntimeException("Database error", e);
+        return devices;
     }
-
-    return devices;
-}
 
 }
 

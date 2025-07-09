@@ -32,7 +32,7 @@ static void res_get_handler(coap_message_t *request, coap_message_t *response,
                             uint8_t *buffer, uint16_t preferred_size, int32_t *offset);
 
 RESOURCE(res_light,
-         "title=\"Light\";rt=\"LightSensor\"",
+         "title=\"Light\";rt=\"LightSensor\";obs",
          res_get_handler,
          NULL,
          NULL,
@@ -82,8 +82,6 @@ PROCESS_THREAD(coap_light_sensor_process, ev, data)
 {
   PROCESS_BEGIN();
 
-  etimer_set(&sensor_timer, CLOCK_SECOND * 10);
-
   printf("[SENSOR LIGHT] Starting CoAP Light Sensor\n");
 
   coap_engine_init();
@@ -108,11 +106,15 @@ PROCESS_THREAD(coap_light_sensor_process, ev, data)
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&reg_timer));
   }
 
+  etimer_set(&sensor_timer, CLOCK_SECOND * 10);
+
   while(1) {
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&sensor_timer));
 
-    last_light_value = rand() % 1000001; // millilux
+    last_light_value = rand() % 900001; 
     printf("[SENSOR LIGHT] New light value generated: %.3f lux\n", last_light_value / 1000.0);
+
+    coap_notify_observers(&res_light);
 
     etimer_reset(&sensor_timer);
   }

@@ -39,6 +39,7 @@ static char payload[128];
 static bool sensors_discovered = false;
 
 static char sensor_urls[3][128];  // parsed IPs + resource paths
+static const char *sensor_types[] = { "temp", "light", "humidity" };
 static const char *resource_paths[] = {
   "sensors/temp",
   "sensors/light",
@@ -71,6 +72,37 @@ static void registration_response_handler(coap_message_t *response) {
     is_registered = false;
 
   printf("[ACTUATOR LIGHT] Registration response: %.*s\n", len, (char *)chunk);
+}
+
+static void notify_handler_light(coap_observee_t *obs, void *notification, coap_notification_flag_t flag) {
+  coap_message_t *msg = (coap_message_t *)notification;
+
+  if(flag == NOTIFICATION_OK && msg != NULL) {
+    const uint8_t *payload = NULL;
+    int len = coap_get_payload(msg, &payload);
+
+    if(len > 0) {
+      char value_str[16];
+      memcpy(value_str, payload, len);
+      value_str[len] = '\0';
+      float value = atof(value_str) / 1000;
+
+      printf("[ACTUATOR LIGHT] [OBS] Light: %.3f lux\n", value);
+
+      leds_off(LEDS_YELLOW);
+      if (value < min_light) {
+        leds_on(LEDS_YELLOW);
+        printf("[ACTUATOR LIGHT] [OBS] Light LOW - Lights ON (YELLOW LED)\n");
+      } else if (value > max_light) {
+        leds_off(LEDS_YELLOW);
+        printf("[ACTUATOR LIGHT] [OBS] Light HIGH - Lights OFF\n");
+      }
+    }
+  } else if(flag == OBSERVE_NOT_SUPPORTED) {
+    printf("[ACTUATOR LIGHT] [OBS] Observation not supported.\n");
+  } else if(flag == OBSERVE_CANCELLED) {
+    printf("[ACTUATOR LIGHT] [OBS] Observation cancelled.\n");
+  }
 }
 
 static bool sensors_found[3] = {false, false, false};  // temp, light, humidity
@@ -116,6 +148,21 @@ static void discovery_parser(const uint8_t *chunk, int len) {
     sensors_discovered = true;
     printf("[ACTUATOR LIGHT] All sensors discovered:\n  Temp: %s\n  Light: %s\n  Humidity: %s\n",
            sensor_urls[0], sensor_urls[1], sensor_urls[2]);
+
+    coap_endpoint_parse(sensor_urls[1], strlen(sensor_urls[1]), &server_ep);
+    coap_observee_t *obs = coap_observee_add(
+        &server_ep,
+        resource_paths[1], // "sensors/light"
+        NULL,
+        notify_handler_light,
+        NULL);
+
+    if (obs != NULL) {
+      printf("[ACTUATOR LIGHT] [OBS] Subscribed to light sensor!\n");
+    } else {
+      printf("[ACTUATOR LIGHT] [OBS] Failed to subscribe to light sensor\n");
+    }
+
   } else {
     printf("[ACTUATOR LIGHT] Waiting for more sensors to be discovered...\n");
   }
@@ -133,8 +180,6 @@ static void discovery_response_handler(coap_message_t *response) {
     printf("[ACTUATOR LIGHT] Sensor discovery failed: empty payload\n");
     return;
   }
-
-  printf("[ACTUATOR LIGHT] Sensor discovery response: %.*s\n", len, (char *)chunk);
 
   discovery_parser(chunk, len);
 }
@@ -173,7 +218,7 @@ static void client_chunk_handler(coap_message_t *response) {
     } else if(current_sensor_index == 2) {
       printf("[ACTUATOR LIGHT] Humidity: %.3f %%\n", value);
 
-      printf("[ACTUATOR LIGHT] Room data - %.3f C - %.3f lux - %.3f%%\n", room_data[0], room_data[1], room_data[2]);
+      printf("[ACTUATOR LIGHT] Room data: %.3f C; %.3f lux; %.3f%%;\n", room_data[0], room_data[1], room_data[2]);
       eml_net_predict_proba(&room_occupancy_forecast, room_data, 3, room_occupancy_probability, 2);
       if (room_occupancy_probability[0] > room_occupancy_probability[1]){
         room_status = OCCUPIED;
@@ -201,13 +246,11 @@ PROCESS_THREAD(light_actuator, ev, data)
   printf("[ACTUATOR LIGHT] Light thresholds: min=%.3f lux max=%.3f lux\n", min_light, max_light);
   printf("[ACTUATOR LIGHT] Dummy call to avoid warnings: %p, %s\n", eml_net_activation_function_strs, eml_error_str(0));
 
-  // Wait until connected to border router
   while(!is_connected()) {
     etimer_set(&connectivity_timer, CLOCK_SECOND * 5);
     PROCESS_WAIT_UNTIL(etimer_expired(&connectivity_timer));
   }
 
-  // Registration phase
   while(!is_registered) {
     coap_endpoint_parse(SERVER_EP, strlen(SERVER_EP), &server_ep);
     coap_init_message(request, COAP_TYPE_CON, COAP_POST, 0);
@@ -222,20 +265,27 @@ PROCESS_THREAD(light_actuator, ev, data)
     PROCESS_WAIT_UNTIL(etimer_expired(&reg_timer));
   }
 
-  // Sensor discovery
+  // Sensor discovery with query parameters
   while(!sensors_discovered) {
-    coap_endpoint_parse(DISCOVERY_EP, strlen(DISCOVERY_EP), &server_ep);
-    coap_init_message(request, COAP_TYPE_CON, COAP_GET, coap_get_mid());
-    coap_set_header_uri_path(request, "sensors-discovery");
+    for(int i = 0; i < 3; i++) {
+      if(!sensors_found[i]) {
+        coap_endpoint_parse(DISCOVERY_EP, strlen(DISCOVERY_EP), &server_ep);
+        coap_init_message(request, COAP_TYPE_CON, COAP_GET, coap_get_mid());
+        coap_set_header_uri_path(request, "sensors-discovery");
 
-    printf("[ACTUATOR LIGHT] Requesting sensor addresses...\n");
-    COAP_BLOCKING_REQUEST(&server_ep, request, discovery_response_handler);
+        char query[32];
+        snprintf(query, sizeof(query), "type=%s", sensor_types[i]);
+        coap_set_header_uri_query(request, query);
 
-    etimer_set(&reg_timer, CLOCK_SECOND * 5);
-    PROCESS_WAIT_UNTIL(etimer_expired(&reg_timer));
+        printf("[ACTUATOR LIGHT] Discovering sensor type: %s\n", sensor_types[i]);
+        COAP_BLOCKING_REQUEST(&server_ep, request, discovery_response_handler);
+
+        etimer_set(&reg_timer, CLOCK_SECOND * 2);
+        PROCESS_WAIT_UNTIL(etimer_expired(&reg_timer));
+      }
+    }
   }
 
-  // Start periodic data collection
   etimer_set(&et, CLOCK_SECOND * 10);
 
   while(1) {
@@ -262,10 +312,10 @@ PROCESS_THREAD(light_actuator, ev, data)
 
     if(ev == serial_line_event_message) {
       char *line = (char *)data;
-      int new_min, new_max;
+      float new_min, new_max;
 
       if(strncmp(line, "light_th", 8) == 0) {
-        if(sscanf(line + 8, "%d %d", &new_min, &new_max) == 2) {
+        if(sscanf(line + 8, "%f %f", &new_min, &new_max) == 2) {
           if(new_min < new_max) {
             min_light = new_min;
             max_light = new_max;

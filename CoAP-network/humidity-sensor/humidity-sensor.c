@@ -41,7 +41,7 @@ RESOURCE(res_humidity,
 static void res_get_handler(coap_message_t *request, coap_message_t *response, uint8_t *buffer, uint16_t preferred_size, int32_t *offset) {
   int len = snprintf((char *)buffer, preferred_size, "%d", last_humidity_value);
 
-  printf("[SENSOR HUMIDITY] Received request on /sensors/humidity - returning: %.2f %%\n", last_humidity_value / 100.0);
+  printf("[SENSOR HUMIDITY] Received request on /sensors/humidity - returning: %.3f %%\n", last_humidity_value / 1000.0);
 
   coap_set_header_content_format(response, TEXT_PLAIN);
   coap_set_payload(response, buffer, len);
@@ -80,8 +80,6 @@ PROCESS_THREAD(coap_humidity_sensor_process, ev, data)
 {
   PROCESS_BEGIN();
 
-  etimer_set(&sensor_timer, CLOCK_SECOND * 10);
-
   printf("[SENSOR HUMIDITY] Starting CoAP Humidity Sensor\n");
 
   coap_engine_init();
@@ -106,11 +104,13 @@ PROCESS_THREAD(coap_humidity_sensor_process, ev, data)
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&reg_timer));
   }
 
+  etimer_set(&sensor_timer, CLOCK_SECOND * 10);
+
   while(1) {
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&sensor_timer));
 
-    last_humidity_value = rand() % 10100; // 0.00% to 100.00%
-    printf("[SENSOR HUMIDITY] New humidity value generated: %.2f %%\n", last_humidity_value / 100.0);
+    last_humidity_value = rand() % 100000; 
+    printf("[SENSOR HUMIDITY] New humidity value generated: %.3f %%\n", last_humidity_value / 1000.0);
 
     etimer_reset(&sensor_timer);
   }

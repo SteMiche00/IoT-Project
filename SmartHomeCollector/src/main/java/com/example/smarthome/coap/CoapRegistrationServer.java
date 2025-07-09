@@ -34,7 +34,7 @@ public class CoapRegistrationServer extends CoapServer {
 
             DeviceRegistry.registerDevice(type, ip);
             try{
-                DatabaseManager.insertSensor(type, ip, port);
+                DatabaseManager.insertDevice(type, ip, port);
             }
             catch (Exception e) {
                 System.err.println("[REGISTRATION] Error during registration: " + e.getMessage());
@@ -67,42 +67,43 @@ public class CoapRegistrationServer extends CoapServer {
         @Override
         public void handleGET(CoapExchange exchange) {
             System.out.println("Discovery request received");
-        
-            try{
-                List<DeviceModel> devices = DatabaseManager.getAllSensors();
-                if(devices.isEmpty()) {
-                    exchange.respond(CoAP.ResponseCode.CONTENT, "No devices found".getBytes(StandardCharsets.UTF_8));
+
+            String query = exchange.getRequestOptions().getUriQuery().toString();
+            String requestedType = exchange.getRequestOptions().getUriQuery().stream()
+                    .filter(q -> q.startsWith("type="))
+                    .map(q -> q.substring(5))
+                    .findFirst()
+                    .orElse(null);
+
+            if (requestedType == null) {
+                exchange.respond(CoAP.ResponseCode.BAD_REQUEST, "Missing 'type' query parameter");
+                return;
+            }
+
+            try {
+                List<DeviceModel> devices = DatabaseManager.getAllDevices();
+                if (devices.isEmpty()) {
+                    exchange.respond(CoAP.ResponseCode.CONTENT, "No devices found");
                     return;
                 }
 
-                List<DeviceModel> sensors = new ArrayList<DeviceModel>();
                 for (DeviceModel device : devices) {
-                    if (device.getName() != null && device.getName().toLowerCase().contains("sensor")) {
-                        sensors.add(device);
+                    if (device.getName() != null &&
+                        device.getName().toLowerCase().contains("sensor") &&
+                        device.getName().toLowerCase().contains(requestedType.toLowerCase())) {
+
+                        String response = device.getName() + "@" + device.getIp() + "-" + device.getPort();
+                        System.out.println("[DISCOVERY] Responding with: " + response);
+                        exchange.respond(CoAP.ResponseCode.CONTENT, response);
+                        return;
                     }
                 }
 
-                if(sensors.isEmpty()) {
-                    exchange.respond(CoAP.ResponseCode.CONTENT, "No sensors found".getBytes(StandardCharsets.UTF_8));
-                    return;
-                }
+                exchange.respond(CoAP.ResponseCode.NOT_FOUND, "No sensor of type '" + requestedType + "' found");
 
-                for (DeviceModel device : sensors) {
-                    StringBuilder response = new StringBuilder();
-                    response.append(device.getName())
-                            .append("@")
-                            .append(device.getIp())
-                            .append("-")
-                            .append(device.getPort());
-                    System.out.println("[DISCOVERY] Device found: " + response);
-                    exchange.respond(CoAP.ResponseCode.CONTENT, response.toString().getBytes(StandardCharsets.UTF_8));
-                }
-                
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 System.err.println("[DISCOVERY] Error during discovery: " + e.getMessage());
                 exchange.respond(CoAP.ResponseCode.INTERNAL_SERVER_ERROR, "Failed");
-                return;
             }
         }
     }
