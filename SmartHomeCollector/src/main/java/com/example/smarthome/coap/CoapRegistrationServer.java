@@ -5,7 +5,11 @@ import com.example.smarthome.db.DatabaseManager;
 import com.example.smarthome.model.DeviceModel;
 
 import org.eclipse.californium.core.CoapServer;
+import org.eclipse.californium.core.CoapClient;
+import org.eclipse.californium.core.CoapHandler;
+import org.eclipse.californium.core.CoapObserveRelation;
 import org.eclipse.californium.core.CoapResource;
+import org.eclipse.californium.core.CoapResponse;
 import org.eclipse.californium.core.coap.CoAP;
 import org.eclipse.californium.core.server.resources.CoapExchange;
 
@@ -42,7 +46,24 @@ public class CoapRegistrationServer extends CoapServer {
                 exchange.respond(CoAP.ResponseCode.INTERNAL_SERVER_ERROR, "Failed");
                 return;
             }
-            
+            if(type.contains("sensor")) {
+                
+                String[] parts = type.split("_");
+                CoapClient client = new CoapClient("coap://[" + ip + "]/" + "sensors/" + parts[1].trim());
+                System.out.println("[REGISTRATION] Starting sensor observing for " + "coap://" + ip + "/sensors/" + parts[1]);
+                CoapObserveRelation relation = client.observe(new CoapHandler(){
+                @Override
+                public void onLoad(CoapResponse response) {
+                    String payload = response.getResponseText();
+                    System.out.printf("[REGISTRATION] Sensor %s @ %s:%d reported: %s%n", type, ip, port, payload);
+                    DatabaseManager.insertSensorData(type, Double.parseDouble(payload));
+                }
+                @Override
+                public void onError() {
+                    System.err.println("[REGISTRATION] Error observing sensor " + type);
+                }
+               });
+            }
             exchange.respond(CoAP.ResponseCode.CREATED, "Registered".getBytes(StandardCharsets.UTF_8));
         }
 

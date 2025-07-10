@@ -16,8 +16,8 @@ public class SmartHomeCollector {
         System.out.println("[INFO] CoAP server started on port 5683");
 
         // 2. Avvia il poller per interrogare i sensori registrati
-        SensorPoller sensorPoller = new SensorPoller();
-        sensorPoller.startPolling();
+        //SensorPoller sensorPoller = new SensorPoller();
+        //sensorPoller.startPolling();
 
         // 3. Mostra comandi disponibili
         printHelp();

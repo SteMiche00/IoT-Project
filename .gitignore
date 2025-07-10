@@ -7,3 +7,4 @@ CoAP-network/temperature-actuator/build
 CoAP-network/temperature-sensor/build
 SmartHomeCollector/Californium3.properties
 
+SmartHomeCollector/Californium.properties

@@ -64,5 +64,35 @@ public class DatabaseManager {
         return devices;
     }
 
+    public static void insertSensorData(String name, Double value) {
+        String table;
+
+        if (name.contains("light")) {
+            table = "light_data";
+        } else if (name.contains("temperature")) {
+            table = "temperature_data";
+        } else if (name.contains("humidity")) {
+            table = "humidity_data";
+        } else {
+            System.err.println("[DB] Unknown sensor type for name: " + name);
+            return;
+        }
+
+        String sql = "INSERT INTO " + table + " (name, value, timestamp) VALUES (?, ?, ?)";
+
+        try (Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, name);
+            stmt.setDouble(2, value/1000);
+            stmt.setTimestamp(3, Timestamp.from(Instant.now()));
+            stmt.executeUpdate();
+            System.out.printf("[DB] Data inserted into %s: %s = %.2f%n", table, name, value/1000);
+        } catch (SQLException e) {
+            System.err.println("[DB] Error inserting sensor data: " + e.getMessage());
+            throw new RuntimeException("Database error", e);
+        }
+    }
 }
+
+
+
 
