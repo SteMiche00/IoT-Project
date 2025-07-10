@@ -32,7 +32,7 @@ static void res_get_handler(coap_message_t *request, coap_message_t *response,
                             uint8_t *buffer, uint16_t preferred_size, int32_t *offset);
 
 RESOURCE(res_temp,
-         "title=\"Temperature\";rt=\"TemperatureSensor\"",
+         "title=\"Temperature\";rt=\"TemperatureSensor\";obs",
          res_get_handler,
          NULL,
          NULL,
@@ -46,6 +46,7 @@ static void res_get_handler(coap_message_t *request, coap_message_t *response, u
   coap_set_header_content_format(response, TEXT_PLAIN);
   coap_set_payload(response, buffer, len);
 }
+
 
 static bool is_connected() {
   if(NETSTACK_ROUTING.node_is_reachable()) {
@@ -67,7 +68,9 @@ void client_chunk_handler(coap_message_t *response) {
   int len = coap_get_payload(response, &chunk);
   if(strncmp((char*)chunk, "Registered", len) == 0)
     is_registered = true;
-  else
+  else if (strncmp((char*)chunk, "Unregistered", len) == 0)
+    is_registered = false;
+  else if (strncmp((char*)chunk, "Failed", len) == 0)
     is_registered = false;
 
   printf("[SENSOR TEMP] Response: %.*s\n", len, (char *)chunk);
@@ -84,6 +87,7 @@ PROCESS_THREAD(coap_temp_sensor_process, ev, data)
 
   coap_engine_init();
   coap_activate_resource(&res_temp, "sensors/temp");
+  res_temp.flags |= IS_OBSERVABLE;
 
   while(!is_connected()){
     etimer_set(&connectivity_timer, CLOCK_SECOND * 5);
@@ -109,8 +113,10 @@ PROCESS_THREAD(coap_temp_sensor_process, ev, data)
   while(1) {
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&sensor_timer));
 
-    last_temp_value = (rand() % 40001) - 10000; 
+    last_temp_value = (rand() % 40001) - 10000;
     printf("[SENSOR TEMP] New temperature value generated: %.3f C\n", last_temp_value / 1000.0);
+
+    coap_notify_observers(&res_temp);
 
     etimer_reset(&sensor_timer);
   }

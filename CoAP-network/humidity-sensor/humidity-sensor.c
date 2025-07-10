@@ -32,7 +32,7 @@ static void res_get_handler(coap_message_t *request, coap_message_t *response,
                             uint8_t *buffer, uint16_t preferred_size, int32_t *offset);
 
 RESOURCE(res_humidity,
-         "title=\"Humidity\";rt=\"HumiditySensor\"",
+         "title=\"Humidity\";rt=\"HumiditySensor\";obs",
          res_get_handler,
          NULL,
          NULL,
@@ -67,7 +67,9 @@ void client_chunk_handler(coap_message_t *response) {
   int len = coap_get_payload(response, &chunk);
   if(strncmp((char*)chunk, "Registered", len) == 0)
     is_registered = true;
-  else
+  else if (strncmp((char*)chunk, "Unregistered", len) == 0)
+    is_registered = false;
+  else if (strncmp((char*)chunk, "Failed", len) == 0)
     is_registered = false;
 
   printf("[SENSOR HUMIDITY] Response: %.*s\n", len, (char *)chunk);
@@ -84,6 +86,7 @@ PROCESS_THREAD(coap_humidity_sensor_process, ev, data)
 
   coap_engine_init();
   coap_activate_resource(&res_humidity, "sensors/humidity");
+  res_humidity.flags |= IS_OBSERVABLE;
 
   while(!is_connected()){
     etimer_set(&connectivity_timer, CLOCK_SECOND * 5);
@@ -111,6 +114,8 @@ PROCESS_THREAD(coap_humidity_sensor_process, ev, data)
 
     last_humidity_value = rand() % 100000; 
     printf("[SENSOR HUMIDITY] New humidity value generated: %.3f %%\n", last_humidity_value / 1000.0);
+
+    coap_notify_observers(&res_humidity);
 
     etimer_reset(&sensor_timer);
   }

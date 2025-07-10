@@ -6,6 +6,7 @@
 #include "sys/etimer.h"
 #include "dev/leds.h"
 #include "coap-blocking-api.h"
+#include "coap-observe.h"
 #include "node-id.h"
 #include "net/ipv6/simple-udp.h"
 #include "net/ipv6/uip.h"
@@ -86,6 +87,7 @@ PROCESS_THREAD(coap_light_sensor_process, ev, data)
 
   coap_engine_init();
   coap_activate_resource(&res_light, "sensors/light");
+  res_light.flags |= IS_OBSERVABLE;
 
   while(!is_connected()){
     etimer_set(&connectivity_timer, CLOCK_SECOND * 5);
