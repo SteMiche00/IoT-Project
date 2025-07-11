@@ -15,9 +15,6 @@
 
 #include "../ml-classifier/room_occupancy_forecast.h"
 
-#define OCCUPIED  0
-#define NOT_OCCUPIED  1
-
 #define LOG_MODULE "TempActuator"
 #define LOG_LEVEL LOG_LEVEL_INFO
 
@@ -34,14 +31,16 @@ static coap_observee_t *obs[3];
 
 static float min_temp = 18.0;
 static float max_temp = 25.0;
+static bool status = false; //true = actuator ON, false = actuator OFF
 
 static float room_data[3] = {0, 0, 0}; // 0=temp, 1=light, 2=humidity
 static float room_occupancy_probability[2] = {0, 0};
-static bool room_status;
 
 static bool is_registered = false;
 static char payload[128];
 static bool sensors_discovered = false;
+static bool first_value_observed[3] = {false, false, false};
+static bool energy_saving = false;
 
 static char sensor_urls[3][128];  // parsed IPs + resource paths
 static const char *sensor_types[] = { "temp", "light", "humidity" };
@@ -52,6 +51,85 @@ static char *resource_paths[] = {
 };
 
 static bool sensors_found[3] = {false, false, false};  // temp, light, humidity
+
+static void res_post_threshold_handler(coap_message_t *request,
+                                       coap_message_t *response,
+                                       uint8_t *buffer,
+                                       uint16_t preferred_size,
+                                       int32_t *offset);
+
+static void res_get_threshold_handler(coap_message_t *request,
+                                       coap_message_t *response,
+                                       uint8_t *buffer,
+                                       uint16_t preferred_size,
+                                       int32_t *offset);
+static void res_get_status_handler(coap_message_t *request,
+                                       coap_message_t *response,
+                                       uint8_t *buffer,
+                                       uint16_t preferred_size,
+                                       int32_t *offset);
+                                
+RESOURCE(res_thresholds,
+         "title=\"Thresholds\";rt=\"Control\"",
+         res_get_threshold_handler,  // GET 
+         res_post_threshold_handler, // POST
+         NULL,                      // PUT
+         NULL);                     // DELETE
+
+RESOURCE(res_status,
+         "title=\"Status\";rt=\"Control\";obs",
+         res_get_status_handler,  // GET 
+         NULL,                      // POST
+         NULL,                      // PUT
+         NULL);                     // DELETE
+
+static void res_post_threshold_handler(coap_message_t *request,
+                                       coap_message_t *response,
+                                       uint8_t *buffer,
+                                       uint16_t preferred_size,
+                                       int32_t *offset) {
+  size_t len = coap_get_payload(request, (const uint8_t **)&buffer);
+  buffer[len] = '\0';
+
+  printf("[ACTUATOR TEMP] Received CoAP POST: %s\n", buffer);
+
+  float new_min, new_max;
+  if (sscanf((char *)buffer, "min=%f&max=%f", &new_min, &new_max) == 3) {
+    min_temp = new_min;
+    max_temp = new_max;
+    printf("[ACTUATOR TEMP] Updated thresholds: min_temp=%.3f, max_temp=%.3f\n",
+           min_temp, max_temp);
+    coap_set_status_code(response, CHANGED_2_04);
+  } else {
+    coap_set_status_code(response, BAD_REQUEST_4_00);
+  }
+}
+
+static void res_get_threshold_handler(coap_message_t *request,
+                                      coap_message_t *response,
+                                      uint8_t *buffer,
+                                      uint16_t preferred_size,
+                                      int32_t *offset){
+  int len = snprintf((char *)buffer, preferred_size,
+                     "min=%f&max=%f",
+                     min_temp, max_temp);
+
+  coap_set_header_content_format(response, TEXT_PLAIN);
+  coap_set_payload(response, buffer, len);
+}
+
+static void res_get_status_handler(coap_message_t *request,
+                                      coap_message_t *response,
+                                      uint8_t *buffer,
+                                      uint16_t preferred_size,
+                                      int32_t *offset){
+  int len = snprintf((char *)buffer, preferred_size,
+                     "status=%d",
+                     status);
+
+  coap_set_header_content_format(response, TEXT_PLAIN);
+  coap_set_payload(response, buffer, len);
+}
 
 static bool is_connected() {
   if(NETSTACK_ROUTING.node_is_reachable()) {
@@ -150,65 +228,10 @@ static void discovery_response_handler(coap_message_t *response) {
 
   discovery_parser(chunk, len);
 }
-/*
-static void client_chunk_handler(coap_message_t *response) {
-  if (response == NULL) {
-    printf("[ACTUATOR TEMP] Timeout from sensor\n");
-    return;
-  }
 
-  const uint8_t *payload;
-  int len = coap_get_payload(response, &payload);
-
-  if (len > 0) {
-    char value_str[16];
-    memcpy(value_str, payload, len);
-    value_str[len] = '\0';
-    float value = atof(value_str) / 1000;
-
-    room_data[current_sensor_index] = value;
-
-    if(current_sensor_index == 0) {
-      printf("[ACTUATOR TEMP] Temperature: %.3f C\n", value);
-
-      leds_off(LEDS_RED);
-      leds_off(LEDS_YELLOW);
-      if(value < min_temp) {
-        leds_on(LEDS_RED);
-        leds_off(LEDS_YELLOW);
-        printf("[ACTUATOR TEMP] Temperature LOW - Heater ON (RED LED)\n");
-      } else if(value > max_temp) {
-        leds_off(LEDS_RED);
-        leds_on(LEDS_YELLOW);
-        printf("[ACTUATOR TEMP] Temperature HIGH - Cooler ON (YELLOW LED)\n");
-      } else {
-        leds_off(LEDS_RED);
-        leds_off(LEDS_YELLOW);
-        printf("[ACTUATOR TEMP] Temperature in range - Device OFF \n");
-      }
-
-    } else if(current_sensor_index == 1) {
-      printf("[ACTUATOR TEMP] Light: %.3f lux\n", value);
-    } else if(current_sensor_index == 2) {
-      printf("[ACTUATOR TEMP] Humidity: %.3f %%\n", value);
-
-      printf("[ACTUATOR TEMP] Room data: %.3f C; %.3f lux; %.3f%%;\n", room_data[0], room_data[1], room_data[2]);
-      eml_net_predict_proba(&room_occupancy_forecast, room_data, 3, room_occupancy_probability, 2);
-      if (room_occupancy_probability[0] > room_occupancy_probability[1]){
-        room_status = OCCUPIED;
-        printf("[ACTUATOR TEMP] Not occupied: %.3f%% - Occupied: %.3f%% - Status: Not occupied\n", room_occupancy_probability[0]*100, room_occupancy_probability[1]*100);
-      } else {
-        room_status = NOT_OCCUPIED;
-        printf("[ACTUATOR TEMP] Not occupied: %.3f%% - Occupied: %.3f%% - Status: Occupied\n", room_occupancy_probability[0]*100, room_occupancy_probability[1]*100);
-      }
-    }
-  }
-}
-*/
 static void
 notification_callback(coap_observee_t *obs, void *notification,
-                      coap_notification_flag_t flag)
-{
+                      coap_notification_flag_t flag) {
   int len = 0;
   const uint8_t *payload = NULL;
 
@@ -247,24 +270,48 @@ notification_callback(coap_observee_t *obs, void *notification,
       value_str[len] = '\0';
       float value = atof(value_str) / 1000;
 
+      first_value_observed[sensor_index] = true;
       room_data[sensor_index] = value;
+
+      if(!first_value_observed[0] || !first_value_observed[1] || !first_value_observed[2]){
+        printf("[ACTUATOR TEMP] Room data not complete\n");
+        return;
+      }
+
+      printf("[ACTUATOR TEMP] Room data: %.3f C; %.3f lux; %.3f%%;\n", room_data[0], room_data[1], room_data[2]);
+      eml_net_predict_proba(&room_occupancy_forecast, room_data, 3, room_occupancy_probability, 2);
+      if (room_occupancy_probability[0] > room_occupancy_probability[1]){
+        printf("[ACTUATOR TEMP] Not occupied: %.3f%% - Occupied: %.3f%% - Status: Not occupied\n", room_occupancy_probability[0]*100, room_occupancy_probability[1]*100);
+        if(energy_saving){
+          printf("[ACTUATOR TEMP] Energy saving mode: ON - Device OFF\n");
+          leds_off(LEDS_RED);
+          leds_off(LEDS_GREEN);
+          status = false;
+          return;
+        }
+      } else {
+        printf("[ACTUATOR TEMP] Not occupied: %.3f%% - Occupied: %.3f%% - Status: Occupied\n", room_occupancy_probability[0]*100, room_occupancy_probability[1]*100);
+      }
 
       if(sensor_index == 0) {
         printf("[ACTUATOR TEMP] Temperature: %.3f C\n", value);
 
+        leds_off(LEDS_GREEN);
         leds_off(LEDS_RED);
-        leds_off(LEDS_YELLOW);
         if(value < min_temp) {
           leds_on(LEDS_RED);
-          leds_off(LEDS_YELLOW);
+          leds_off(LEDS_GREEN);
+          status = true;
           printf("[ACTUATOR TEMP] Temperature LOW - Heater ON (RED LED)\n");
         } else if(value > max_temp) {
           leds_off(LEDS_RED);
-          leds_on(LEDS_YELLOW);
-          printf("[ACTUATOR TEMP] Temperature HIGH - Cooler ON (YELLOW LED)\n");
+          leds_on(LEDS_GREEN);
+          status = true;
+          printf("[ACTUATOR TEMP] Temperature HIGH - Cooler ON (GREEN LED)\n");
         } else {
           leds_off(LEDS_RED);
-          leds_off(LEDS_YELLOW);
+          leds_off(LEDS_GREEN);
+          status = false;
           printf("[ACTUATOR TEMP] Temperature in range - Device OFF \n");
         }
 
@@ -273,23 +320,11 @@ notification_callback(coap_observee_t *obs, void *notification,
       } else if(sensor_index == 2) {
         printf("[ACTUATOR TEMP] Humidity: %.3f %%\n", value);
       }
-
-      printf("[ACTUATOR TEMP] Room data: %.3f C; %.3f lux; %.3f%%;\n", room_data[0], room_data[1], room_data[2]);
-      eml_net_predict_proba(&room_occupancy_forecast, room_data, 3, room_occupancy_probability, 2);
-      if (room_occupancy_probability[0] > room_occupancy_probability[1]){
-        room_status = OCCUPIED;
-        printf("[ACTUATOR TEMP] Not occupied: %.3f%% - Occupied: %.3f%% - Status: Not occupied\n", room_occupancy_probability[0]*100, room_occupancy_probability[1]*100);
-      } else {
-        room_status = NOT_OCCUPIED;
-        printf("[ACTUATOR TEMP] Not occupied: %.3f%% - Occupied: %.3f%% - Status: Occupied\n", room_occupancy_probability[0]*100, room_occupancy_probability[1]*100);
-      }
     }
   }
 }
 
-void
-toggle_observation(const int index)
-{
+void toggle_observation(const int index){
   if(obs[index]) {
     printf("[ACTUATOR TEMP] Stopping observation of %s\n", resource_paths[index]);
     coap_obs_remove_observee(obs[index]);
@@ -309,12 +344,19 @@ AUTOSTART_PROCESSES(&temp_actuator);
 
 PROCESS_THREAD(temp_actuator, ev, data)
 {
+  static bool es_led_state = false;
   static struct etimer reg_timer;
   static struct etimer connectivity_timer;
   static struct etimer et;
+  static struct etimer led_timer;
   button_hal_button_t *button;
 
   PROCESS_BEGIN();
+
+  coap_engine_init();
+  coap_activate_resource(&res_thresholds, "actuators/temp_th");
+  coap_activate_resource(&res_status, "actuators/status");
+  res_status.flags |= IS_OBSERVABLE;
 
   printf("[ACTUATOR TEMP] Starting CoAP Temp Actuator\n");
   printf("[ACTUATOR TEMP] Temperature thresholds: min=%.3f lux max=%.3f lux\n", min_temp, max_temp);
@@ -373,10 +415,37 @@ PROCESS_THREAD(temp_actuator, ev, data)
   while(1) {
     PROCESS_WAIT_EVENT();
 
+    if(ev == PROCESS_EVENT_TIMER && data == &et) {
+      for(int i = 0; i < 3; i++) {
+          toggle_observation(i);
+      }
+    }
+
+    if(ev == PROCESS_EVENT_TIMER && data == &led_timer) {
+      if(energy_saving) {
+        if(es_led_state) {
+          leds_off(LEDS_YELLOW);
+        } else {
+          leds_on(LEDS_YELLOW);
+        }
+        es_led_state = !es_led_state;
+        etimer_set(&led_timer, CLOCK_SECOND); 
+      } else {
+        leds_off(LEDS_YELLOW);
+        es_led_state = false;
+      }
+    }
+
     if (ev == button_hal_release_event) {
       printf("[ACTUATOR TEMP] Button pressed\n");
-      for(int i = 0; i < 3; i++) {
-        toggle_observation(i);
+      
+      energy_saving = !energy_saving;
+      if(energy_saving) {
+        etimer_restart(&led_timer); // start blinking
+        printf("[ACTUATOR TEMP] Energy saving mode: ON\n");
+      } else {
+        leds_off(LEDS_YELLOW);
+        printf("[ACTUATOR TEMP] Energy saving mode: OFF\n");
       }
     }
 
@@ -389,7 +458,7 @@ PROCESS_THREAD(temp_actuator, ev, data)
           if(new_min < new_max) {
             min_temp = new_min;
             max_temp = new_max;
-            printf("[ACTUATOR TEMP] Updated thresholds: min=%.3f lux max=%.3f lux\n",
+            printf("[ACTUATOR TEMP] Updated thresholds: min=%.3f C max=%.3f C\n",
                    min_temp, max_temp);
           } else {
             printf("[ACTUATOR TEMP] Error: min must be < max\n");

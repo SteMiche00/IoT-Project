@@ -21,12 +21,14 @@
 static char* service_name = "sensor_humidity";
 static struct etimer reg_timer;
 static struct etimer connectivity_timer;
-static int last_humidity_value = 0;
+static int last_humidity_value = 47304;
 static bool is_registered = false;
 static coap_endpoint_t server_ep;
 static coap_message_t request[1];
 char payload[128];
 static struct etimer sensor_timer;
+
+static int direction = -1;
 
 static void res_get_handler(coap_message_t *request, coap_message_t *response,
                             uint8_t *buffer, uint16_t preferred_size, int32_t *offset);
@@ -112,7 +114,18 @@ PROCESS_THREAD(coap_humidity_sensor_process, ev, data)
   while(1) {
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&sensor_timer));
 
-    last_humidity_value = rand() % 100000; 
+    //last_humidity_value = rand() % 100000; 
+
+    last_humidity_value += direction * 2372; 
+
+    if(last_humidity_value >= 90000) {
+      last_humidity_value = 90000;
+      direction = -1;
+    } else if(last_humidity_value <= 10000) {
+      last_humidity_value = 10000;
+      direction = 1;
+    }
+
     printf("[SENSOR HUMIDITY] New humidity value generated: %.3f %%\n", last_humidity_value / 1000.0);
 
     coap_notify_observers(&res_humidity);
