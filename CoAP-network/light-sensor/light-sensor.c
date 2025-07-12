@@ -22,12 +22,13 @@
 static char* service_name = "sensor_light";
 static struct etimer reg_timer;
 static struct etimer connectivity_timer;
-static int last_light_value = 291834;
+static int last_light_value = 268443;
 static bool is_registered = false;
 static coap_endpoint_t server_ep;
 static coap_message_t request[1];
 char payload[128];
 static struct etimer sensor_timer;
+static struct etimer reg_led_timer;
 
 static int direction = -1;        // 1 = increasing, -1 = decreasing
 
@@ -111,27 +112,37 @@ PROCESS_THREAD(coap_light_sensor_process, ev, data)
   }
 
   etimer_set(&sensor_timer, CLOCK_SECOND * 10);
+  etimer_set(&reg_led_timer, CLOCK_SECOND);
 
   while(1) {
-    PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&sensor_timer));
+    PROCESS_WAIT_EVENT();
 
-    // last_light_value = rand() % 900001; 
+    if(ev == PROCESS_EVENT_TIMER && data == &reg_led_timer) {
+      etimer_reset(&reg_led_timer);
 
-    last_light_value += direction * 23391; 
-
-    if(last_light_value >= 900000) {
-      last_light_value = 900000;
-      direction = -1;
-    } else if(last_light_value <= 100000) {
-      last_light_value = 100000;
-      direction = 1;
+      if(is_registered) {
+        leds_toggle(LEDS_GREEN);  
+      } else {
+        leds_off(LEDS_GREEN);      
+      }
     }
 
-    printf("[SENSOR LIGHT] New light value generated: %.3f lux\n", last_light_value / 1000.0);
+    if(ev == PROCESS_EVENT_TIMER && data == &sensor_timer){
 
-    coap_notify_observers(&res_light);
+      // last_light_value = rand() % 900001; 
+      last_light_value += direction * 23391; 
 
-    etimer_reset(&sensor_timer);
+      if(last_light_value >= 500000) {
+        last_light_value = 500000;
+        direction = -1;
+      } else if(last_light_value <= 100000) {
+        last_light_value = 100000;
+        direction = 1;
+      }
+      printf("[SENSOR LIGHT] New light value generated: %.3f lux\n", last_light_value / 1000.0);
+      coap_notify_observers(&res_light);
+      etimer_reset(&sensor_timer);
+    }
   }
 
   PROCESS_END();

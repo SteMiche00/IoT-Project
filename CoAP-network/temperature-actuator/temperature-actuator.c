@@ -359,7 +359,7 @@ PROCESS_THREAD(temp_actuator, ev, data)
   res_status.flags |= IS_OBSERVABLE;
 
   printf("[ACTUATOR TEMP] Starting CoAP Temp Actuator\n");
-  printf("[ACTUATOR TEMP] Temperature thresholds: min=%.3f lux max=%.3f lux\n", min_temp, max_temp);
+  printf("[ACTUATOR TEMP] Temperature thresholds: min=%.3f C max=%.3f C\n", min_temp, max_temp);
   printf("[ACTUATOR TEMP] Dummy call to avoid warnings: %p, %s\n", eml_net_activation_function_strs, eml_error_str(0));
 
   button = button_hal_get_by_index(0);
@@ -459,7 +459,7 @@ PROCESS_THREAD(temp_actuator, ev, data)
             min_temp = new_min;
             max_temp = new_max;
             printf("[ACTUATOR TEMP] Updated thresholds: min=%.3f C max=%.3f C\n",
-                   min_temp, max_temp);
+                   min_temp/1000, max_temp/1000);
           } else {
             printf("[ACTUATOR TEMP] Error: min must be < max\n");
           }
