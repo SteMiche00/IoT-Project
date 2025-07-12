@@ -6,19 +6,19 @@ import java.util.Map;
 
 public class DeviceRegistry {
     private static final Map<String, String> deviceMap = new HashMap<>();
-
+    private static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(DeviceRegistry.class.getName());
     private DeviceRegistry() {
     }
 
     public static void registerDevice(String name, String ip) {
         deviceMap.put(name, ip);
-        System.out.printf("[DeviceRegistry] Device registered %s with IP %s%n", name, ip);
+        LOGGER.info(String.format("[DeviceRegistry] Device registered %s with IP %s%n", name, ip));
     }
 
     public static void unregisterDevice(String name) {
         String removed = deviceMap.remove(name);
         if (removed != null) {
-            System.out.printf("[DeviceRegistry] Device Removed %s%n", name);
+            LOGGER.info(String.format("[DeviceRegistry] Device Removed %s%n", name));
         }
     }
 

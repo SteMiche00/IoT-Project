@@ -16,9 +16,11 @@ import org.eclipse.californium.core.server.resources.CoapExchange;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class CoapRegistrationServer extends CoapServer {
 
+   
     public CoapRegistrationServer() {
         add(new RegistrationResource());
         add(new DiscoveryResource());
@@ -29,9 +31,11 @@ public class CoapRegistrationServer extends CoapServer {
             super("registration");
         }
 
+        private static final Logger LOGGER = Logger.getLogger(RegistrationResource.class.getName());
+
         @Override
         public void handlePOST(CoapExchange exchange) {
-            System.out.println("Received registration request");
+            LOGGER.info("Received registration request");
             String type = exchange.getRequestText(); 
             String ip = exchange.getSourceAddress().getHostAddress();
             int port = exchange.getSourcePort();
@@ -41,28 +45,15 @@ public class CoapRegistrationServer extends CoapServer {
                 DatabaseManager.insertDevice(type, ip, port);
             }
             catch (Exception e) {
-                System.err.println("[REGISTRATION] Error during registration: " + e.getMessage());
+                LOGGER.severe("[REGISTRATION] Error during registration: " + e.getMessage());
                 DeviceRegistry.unregisterDevice(type); // consistency between registry and database
                 exchange.respond(CoAP.ResponseCode.INTERNAL_SERVER_ERROR, "Failed");
                 return;
             }
             if(type.contains("sensor")) {
-                
                 String[] parts = type.split("_");
-                CoapClient client = new CoapClient("coap://[" + ip + "]/" + "sensors/" + parts[1].trim());
-                System.out.println("[REGISTRATION] Starting sensor observing for " + "coap://" + ip + "/sensors/" + parts[1]);
-                CoapObserveRelation relation = client.observe(new CoapHandler(){
-                @Override
-                public void onLoad(CoapResponse response) {
-                    String payload = response.getResponseText();
-                    System.out.printf("[REGISTRATION] Sensor %s @ %s:%d reported: %s%n", type, ip, port, payload);
-                    DatabaseManager.insertSensorData(type, Double.parseDouble(payload));
-                }
-                @Override
-                public void onError() {
-                    System.err.println("[REGISTRATION] Error observing sensor " + type);
-                }
-               });
+                LOGGER.info(String.format("[REGISTRATION] Starting sensor observing for " + "coap://" + ip + "/sensors/" + parts[1]));
+                DeviceObserverManager.observeSensor(type, ip, port);
             }
             exchange.respond(CoAP.ResponseCode.CREATED, "Registered".getBytes(StandardCharsets.UTF_8));
         }
@@ -85,9 +76,11 @@ public class CoapRegistrationServer extends CoapServer {
             super("sensors-discovery");
         }
 
+        private static final Logger LOGGER = Logger.getLogger(DiscoveryResource.class.getName());
+
         @Override
         public void handleGET(CoapExchange exchange) {
-            System.out.println("Discovery request received");
+            LOGGER.info("Discovery request received");
 
             String query = exchange.getRequestOptions().getUriQuery().toString();
             String requestedType = exchange.getRequestOptions().getUriQuery().stream()
@@ -114,7 +107,7 @@ public class CoapRegistrationServer extends CoapServer {
                         device.getName().toLowerCase().contains(requestedType.toLowerCase())) {
 
                         String response = device.getName() + "@" + device.getIp() + "-" + device.getPort();
-                        System.out.println("[DISCOVERY] Responding with: " + response);
+                        LOGGER.info("[DISCOVERY] Responding with: " + response);
                         exchange.respond(CoAP.ResponseCode.CONTENT, response);
                         return;
                     }
@@ -123,7 +116,7 @@ public class CoapRegistrationServer extends CoapServer {
                 exchange.respond(CoAP.ResponseCode.NOT_FOUND, "No sensor of type '" + requestedType + "' found");
 
             } catch (Exception e) {
-                System.err.println("[DISCOVERY] Error during discovery: " + e.getMessage());
+                LOGGER.severe("[DISCOVERY] Error during discovery: " + e.getMessage());
                 exchange.respond(CoAP.ResponseCode.INTERNAL_SERVER_ERROR, "Failed");
             }
         }
