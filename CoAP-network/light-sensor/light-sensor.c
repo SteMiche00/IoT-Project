@@ -105,6 +105,7 @@ PROCESS_THREAD(coap_light_sensor_process, ev, data)
     coap_set_payload(request, (uint8_t *)payload, strlen(payload));
 
     printf("[SENSOR LIGHT] Sending registration for %s\n", service_name);
+
     COAP_BLOCKING_REQUEST(&server_ep, request, client_chunk_handler);
 
     etimer_set(&reg_timer, CLOCK_SECOND * 5);
