@@ -68,7 +68,7 @@ public class SmartHomeCollector {
         System.out.println("2. Show current thresholds");
         System.out.println("3. Show registered devices");
         System.out.println("4. Show recent sensor data");
-        System.out.println("q. Show recent sensor data");
+        System.out.println("q. Exit the application");
         System.out.println("0. Show help");
     }
 
@@ -86,6 +86,9 @@ public class SmartHomeCollector {
 
     System.out.println("4. Show recent sensor data");
     System.out.println("   → Display the most recent values recorded by each sensor.\n");
+
+    System.out.println("q. Exit the application");
+    System.out.println("   → Close the application.\n");
 
     System.out.println("0. Show this help menu");
     System.out.println("   → Print this list of available commands.\n");
