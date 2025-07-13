@@ -51,7 +51,7 @@ public class ThresholdManager {
             String uri = DatabaseManager.getNodeUri(actuatorType);
             LOGGER.info("Using URI: " + uri);
             CoapClient client = new CoapClient(uri);
-            String payload = actuatorType.equals("actuator_temp") ? String.format(Locale.US,"min=%.2f&max=%.2f", minValue, maxValue) : String.format(Locale.US,"min=%.2f", minValue);
+            String payload = actuatorType.equals("actuator_temp") ? String.format(Locale.US,"min=%d&max=%d", (int)(minValue * 1000), (int)(maxValue * 1000)) : String.format(Locale.US,"min=%d", (int)(minValue * 1000));
             LOGGER.info("Payload: " + payload);
             CoapResponse response = client.post(payload, MediaTypeRegistry.TEXT_PLAIN);
 
@@ -98,13 +98,13 @@ public class ThresholdManager {
                 String payload = response.getResponseText();
                 if(actuatorType.equals("actuator_temp")){
                 String parts[] = payload.split("&");
-                String minThreshold = parts[0].split("=")[1];
-                String maxThreshold = parts[1].split("=")[1];
+                float minThreshold = Integer.parseInt(parts[0].split("=")[1]) / 1000.0f;
+                float maxThreshold = Integer.parseInt(parts[1].split("=")[1]) / 1000.0f;
                 System.out.println("Current thresholds for " + actuatorType + ": " + 
                                    "Min = " + minThreshold + ", Max = " + maxThreshold);
                 }
                 else {
-                    String minThreshold = payload.split("=")[1];
+                    float minThreshold = Integer.parseInt(payload.split("=")[1]) / 1000.0f;
                     System.out.println("Current threshold for " + actuatorType + ": " + 
                                        "Min = " + minThreshold);
                 }
