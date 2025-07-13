@@ -1,1538 +1,989 @@
-lug 13, 2025 5:18:44 PM com.example.smarthome.db.DatabaseManager cleanup
+lug 13, 2025 7:03:42 PM com.example.smarthome.db.DatabaseManager cleanup
 INFORMAZIONI: [DB] Cleared table: device_registry
 
-lug 13, 2025 5:18:44 PM com.example.smarthome.db.DatabaseManager cleanup
+lug 13, 2025 7:03:42 PM com.example.smarthome.db.DatabaseManager cleanup
 INFORMAZIONI: [DB] Cleared table: light_data
 
-lug 13, 2025 5:18:44 PM com.example.smarthome.db.DatabaseManager cleanup
+lug 13, 2025 7:03:42 PM com.example.smarthome.db.DatabaseManager cleanup
 INFORMAZIONI: [DB] Cleared table: temperature_data
 
-lug 13, 2025 5:18:44 PM com.example.smarthome.db.DatabaseManager cleanup
+lug 13, 2025 7:03:42 PM com.example.smarthome.db.DatabaseManager cleanup
 INFORMAZIONI: [DB] Cleared table: humidity_data
 
-lug 13, 2025 5:18:44 PM org.eclipse.californium.core.network.config.NetworkConfig createStandardWithFile
+lug 13, 2025 7:03:42 PM com.example.smarthome.db.DatabaseManager cleanup
+INFORMAZIONI: [DB] Cleared table: temperature_actuator
+
+lug 13, 2025 7:03:42 PM com.example.smarthome.db.DatabaseManager cleanup
+INFORMAZIONI: [DB] Cleared table: light_actuator
+
+lug 13, 2025 7:03:42 PM org.eclipse.californium.core.network.config.NetworkConfig createStandardWithFile
 INFORMAZIONI: Loading standard properties from file Californium.properties
-lug 13, 2025 5:18:44 PM org.eclipse.californium.core.CoapServer start
+lug 13, 2025 7:03:42 PM org.eclipse.californium.core.CoapServer start
 INFORMAZIONI: Starting server
-lug 13, 2025 5:18:44 PM org.eclipse.californium.core.CoapServer start
+lug 13, 2025 7:03:42 PM org.eclipse.californium.core.CoapServer start
 INFORMAZIONI: No endpoints have been defined for server, setting up server endpoint on default port 5683
-lug 13, 2025 5:18:44 PM org.eclipse.californium.core.network.CoapEndpoint start
+lug 13, 2025 7:03:42 PM org.eclipse.californium.core.network.CoapEndpoint start
 INFORMAZIONI: Starting endpoint at 0.0.0.0/0.0.0.0:5683
-lug 13, 2025 5:18:44 PM com.example.smarthome.SmartHomeCollector main
+lug 13, 2025 7:03:42 PM com.example.smarthome.SmartHomeCollector main
 INFORMAZIONI: [INFO] CoAP server started on port 5683
-lug 13, 2025 5:20:08 PM com.example.smarthome.coap.CoapRegistrationServer$RegistrationResource handlePOST
+lug 13, 2025 7:04:02 PM com.example.smarthome.coap.CoapRegistrationServer$RegistrationResource handlePOST
 INFORMAZIONI: Received registration request
-lug 13, 2025 5:20:08 PM com.example.smarthome.coap.DeviceRegistry registerDevice
-INFORMAZIONI: [DeviceRegistry] Device registered sensor_humidity with IP fd00:0:0:0:f6ce:36fa:435f:f3d6
+lug 13, 2025 7:04:02 PM com.example.smarthome.coap.DeviceRegistry registerDevice
+INFORMAZIONI: [DeviceRegistry] Device registered actuator_light with IP fd00:0:0:0:206:6:6:6
 
-lug 13, 2025 5:20:08 PM com.example.smarthome.db.DatabaseManager insertDevice
-INFORMAZIONI: [DB] Trying to register device: sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683
+lug 13, 2025 7:04:02 PM com.example.smarthome.db.DatabaseManager insertDevice
+INFORMAZIONI: [DB] Trying to register device: actuator_light @ fd00:0:0:0:206:6:6:6:5683
 
-lug 13, 2025 5:20:08 PM com.example.smarthome.db.DatabaseManager insertDevice
-INFORMAZIONI: [DB] Device successfully registered: sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683
+lug 13, 2025 7:04:02 PM com.example.smarthome.db.DatabaseManager insertDevice
+INFORMAZIONI: [DB] Device successfully registered: actuator_light @ fd00:0:0:0:206:6:6:6:5683
 
-lug 13, 2025 5:20:08 PM com.example.smarthome.coap.CoapRegistrationServer$RegistrationResource handlePOST
-INFORMAZIONI: [REGISTRATION] Starting sensor observing for coap://fd00:0:0:0:f6ce:36fa:435f:f3d6/sensors/humidity
-lug 13, 2025 5:20:08 PM com.example.smarthome.coap.DeviceObserverManager observeSensor
-INFORMAZIONI: [OBSERVER] Observing coap://[fd00:0:0:0:f6ce:36fa:435f:f3d6]/sensors/humidity
-lug 13, 2025 5:20:08 PM org.eclipse.californium.core.network.CoapEndpoint start
+lug 13, 2025 7:04:02 PM com.example.smarthome.coap.CoapRegistrationServer$RegistrationResource handlePOST
+INFORMAZIONI: [REGISTRATION] Starting sensor observing for coap://fd00:0:0:0:206:6:6:6/sensors/light
+lug 13, 2025 7:04:02 PM com.example.smarthome.coap.DeviceObserverManager observeNode
+INFORMAZIONI: [OBSERVER] Observing coap://[fd00:0:0:0:206:6:6:6]/actuators/light_status
+lug 13, 2025 7:04:02 PM org.eclipse.californium.core.network.CoapEndpoint start
 INFORMAZIONI: Starting endpoint at 0.0.0.0/0.0.0.0:0
-lug 13, 2025 5:20:08 PM org.eclipse.californium.core.network.EndpointManager createDefaultEndpoint
-INFORMAZIONI: Created implicit default endpoint 0.0.0.0/0.0.0.0:39773
-lug 13, 2025 5:20:11 PM org.eclipse.californium.elements.UDPConnector$NetworkStageThread run
-GRAVE: Exception in network stage thread [UDP-Sender-0.0.0.0/0.0.0.0:0[0]]:
-java.io.IOException: La rete non è raggiungibile
-	at java.base/java.net.PlainDatagramSocketImpl.send0(Native Method)
-	at java.base/java.net.AbstractPlainDatagramSocketImpl.send(AbstractPlainDatagramSocketImpl.java:155)
-	at java.base/java.net.DatagramSocket.send(DatagramSocket.java:695)
-	at org.eclipse.californium.elements.UDPConnector$Sender.work(UDPConnector.java:305)
-	at org.eclipse.californium.elements.UDPConnector$NetworkStageThread.run(UDPConnector.java:236)
+lug 13, 2025 7:04:02 PM org.eclipse.californium.core.network.EndpointManager createDefaultEndpoint
+INFORMAZIONI: Created implicit default endpoint 0.0.0.0/0.0.0.0:51172
+lug 13, 2025 7:04:02 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node actuator_light @ fd00:0:0:0:206:6:6:6:5683 reported: 0
 
-lug 13, 2025 5:20:15 PM org.eclipse.californium.elements.UDPConnector$NetworkStageThread run
-GRAVE: Exception in network stage thread [UDP-Sender-0.0.0.0/0.0.0.0:0[0]]:
-java.io.IOException: La rete non è raggiungibile
-	at java.base/java.net.PlainDatagramSocketImpl.send0(Native Method)
-	at java.base/java.net.AbstractPlainDatagramSocketImpl.send(AbstractPlainDatagramSocketImpl.java:155)
-	at java.base/java.net.DatagramSocket.send(DatagramSocket.java:695)
-	at org.eclipse.californium.elements.UDPConnector$Sender.work(UDPConnector.java:305)
-	at org.eclipse.californium.elements.UDPConnector$NetworkStageThread.run(UDPConnector.java:236)
+lug 13, 2025 7:04:02 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_actuator: actuator_light = 0,000
 
-lug 13, 2025 5:20:25 PM org.eclipse.californium.elements.UDPConnector$NetworkStageThread run
-GRAVE: Exception in network stage thread [UDP-Sender-0.0.0.0/0.0.0.0:0[0]]:
-java.io.IOException: La rete non è raggiungibile
-	at java.base/java.net.PlainDatagramSocketImpl.send0(Native Method)
-	at java.base/java.net.AbstractPlainDatagramSocketImpl.send(AbstractPlainDatagramSocketImpl.java:155)
-	at java.base/java.net.DatagramSocket.send(DatagramSocket.java:695)
-	at org.eclipse.californium.elements.UDPConnector$Sender.work(UDPConnector.java:305)
-	at org.eclipse.californium.elements.UDPConnector$NetworkStageThread.run(UDPConnector.java:236)
-
-lug 13, 2025 5:20:33 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 33072
-
-lug 13, 2025 5:20:33 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 33,07
-
-lug 13, 2025 5:21:01 PM com.example.smarthome.coap.CoapRegistrationServer$RegistrationResource handlePOST
+lug 13, 2025 7:04:04 PM com.example.smarthome.commands.ThresholdManager getThresholds
+INFORMAZIONI: Using URI: coap://[fd00:0:0:0:206:6:6:6]/actuators/light_th
+lug 13, 2025 7:04:05 PM com.example.smarthome.commands.ThresholdManager getThresholds
+INFORMAZIONI: Response: min=200000
+lug 13, 2025 7:04:05 PM com.example.smarthome.coap.CoapRegistrationServer$RegistrationResource handlePOST
 INFORMAZIONI: Received registration request
-lug 13, 2025 5:21:01 PM com.example.smarthome.coap.DeviceRegistry registerDevice
-INFORMAZIONI: [DeviceRegistry] Device registered sensor_light with IP fd00:0:0:0:f6ce:36cc:e20:721
+lug 13, 2025 7:04:05 PM com.example.smarthome.coap.DeviceRegistry registerDevice
+INFORMAZIONI: [DeviceRegistry] Device registered sensor_temp with IP fd00:0:0:0:202:2:2:2
 
-lug 13, 2025 5:21:01 PM com.example.smarthome.db.DatabaseManager insertDevice
-INFORMAZIONI: [DB] Trying to register device: sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683
+lug 13, 2025 7:04:05 PM com.example.smarthome.db.DatabaseManager insertDevice
+INFORMAZIONI: [DB] Trying to register device: sensor_temp @ fd00:0:0:0:202:2:2:2:5683
 
-lug 13, 2025 5:21:01 PM com.example.smarthome.db.DatabaseManager insertDevice
-INFORMAZIONI: [DB] Device successfully registered: sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683
+lug 13, 2025 7:04:05 PM com.example.smarthome.db.DatabaseManager insertDevice
+INFORMAZIONI: [DB] Device successfully registered: sensor_temp @ fd00:0:0:0:202:2:2:2:5683
 
-lug 13, 2025 5:21:01 PM com.example.smarthome.coap.CoapRegistrationServer$RegistrationResource handlePOST
-INFORMAZIONI: [REGISTRATION] Starting sensor observing for coap://fd00:0:0:0:f6ce:36cc:e20:721/sensors/light
-lug 13, 2025 5:21:01 PM com.example.smarthome.coap.DeviceObserverManager observeSensor
-INFORMAZIONI: [OBSERVER] Observing coap://[fd00:0:0:0:f6ce:36cc:e20:721]/sensors/light
-lug 13, 2025 5:21:01 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 268443
-
-lug 13, 2025 5:21:01 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 268,44
-
-lug 13, 2025 5:21:03 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 25956
-
-lug 13, 2025 5:21:03 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 25,96
-
-lug 13, 2025 5:21:10 PM com.example.smarthome.coap.CoapRegistrationServer$RegistrationResource handlePOST
+lug 13, 2025 7:04:05 PM com.example.smarthome.coap.CoapRegistrationServer$RegistrationResource handlePOST
+INFORMAZIONI: [REGISTRATION] Starting sensor observing for coap://fd00:0:0:0:202:2:2:2/sensors/temp
+lug 13, 2025 7:04:05 PM com.example.smarthome.coap.DeviceObserverManager observeNode
+INFORMAZIONI: [OBSERVER] Observing coap://[fd00:0:0:0:202:2:2:2]/sensors/temp
+lug 13, 2025 7:04:05 PM com.example.smarthome.coap.CoapRegistrationServer$RegistrationResource handlePOST
 INFORMAZIONI: Received registration request
-lug 13, 2025 5:21:10 PM com.example.smarthome.coap.DeviceRegistry registerDevice
-INFORMAZIONI: [DeviceRegistry] Device registered sensor_temp with IP fd00:0:0:0:f6ce:36dd:e552:6326
-
-lug 13, 2025 5:21:10 PM com.example.smarthome.db.DatabaseManager insertDevice
-INFORMAZIONI: [DB] Trying to register device: sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683
-
-lug 13, 2025 5:21:10 PM com.example.smarthome.db.DatabaseManager insertDevice
-INFORMAZIONI: [DB] Device successfully registered: sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683
-
-lug 13, 2025 5:21:10 PM com.example.smarthome.coap.CoapRegistrationServer$RegistrationResource handlePOST
-INFORMAZIONI: [REGISTRATION] Starting sensor observing for coap://fd00:0:0:0:f6ce:36dd:e552:6326/sensors/temp
-lug 13, 2025 5:21:10 PM com.example.smarthome.coap.DeviceObserverManager observeSensor
-INFORMAZIONI: [OBSERVER] Observing coap://[fd00:0:0:0:f6ce:36dd:e552:6326]/sensors/temp
-lug 13, 2025 5:21:10 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 14915
-
-lug 13, 2025 5:21:10 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 14,92
-
-lug 13, 2025 5:21:13 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 23584
-
-lug 13, 2025 5:21:13 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 23,58
-
-lug 13, 2025 5:21:16 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 245052
-
-lug 13, 2025 5:21:16 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 245,05
-
-lug 13, 2025 5:21:23 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 21212
-
-lug 13, 2025 5:21:23 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 21,21
-
-lug 13, 2025 5:21:25 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 15898
-
-lug 13, 2025 5:21:25 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 15,90
-
-lug 13, 2025 5:21:26 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 221661
-
-lug 13, 2025 5:21:26 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 221,66
-
-lug 13, 2025 5:21:33 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 18840
-
-lug 13, 2025 5:21:33 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 18,84
-
-lug 13, 2025 5:21:35 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 16881
-
-lug 13, 2025 5:21:35 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 16,88
-
-lug 13, 2025 5:21:36 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 198270
-
-lug 13, 2025 5:21:36 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 198,27
-
-lug 13, 2025 5:21:43 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 16468
-
-lug 13, 2025 5:21:43 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 16,47
-
-lug 13, 2025 5:21:45 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 17864
-
-lug 13, 2025 5:21:45 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 17,86
-
-lug 13, 2025 5:21:46 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 174879
-
-lug 13, 2025 5:21:46 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 174,88
-
-lug 13, 2025 5:21:53 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 14096
-
-lug 13, 2025 5:21:53 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 14,10
-
-lug 13, 2025 5:21:55 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 18847
-
-lug 13, 2025 5:21:55 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 18,85
-
-lug 13, 2025 5:21:56 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 151488
-
-lug 13, 2025 5:21:56 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 151,49
-
-lug 13, 2025 5:22:03 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 11724
-
-lug 13, 2025 5:22:03 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 11,72
-
-lug 13, 2025 5:22:05 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 19830
-
-lug 13, 2025 5:22:05 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 19,83
-
-lug 13, 2025 5:22:06 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 128097
-
-lug 13, 2025 5:22:06 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 128,10
-
-lug 13, 2025 5:22:13 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 10000
-
-lug 13, 2025 5:22:13 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 10,00
-
-lug 13, 2025 5:22:15 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 20813
-
-lug 13, 2025 5:22:15 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 20,81
-
-lug 13, 2025 5:22:16 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 104706
-
-lug 13, 2025 5:22:16 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 104,71
-
-lug 13, 2025 5:22:23 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 12372
-
-lug 13, 2025 5:22:23 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 12,37
-
-lug 13, 2025 5:22:25 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 21796
-
-lug 13, 2025 5:22:25 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 21,80
-
-lug 13, 2025 5:22:26 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 100000
-
-lug 13, 2025 5:22:26 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 100,00
-
-lug 13, 2025 5:22:33 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 14744
-
-lug 13, 2025 5:22:33 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 14,74
-
-lug 13, 2025 5:22:35 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 22779
-
-lug 13, 2025 5:22:35 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 22,78
-
-lug 13, 2025 5:22:36 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 123391
-
-lug 13, 2025 5:22:36 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 123,39
-
-lug 13, 2025 5:22:43 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 17116
-
-lug 13, 2025 5:22:43 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 17,12
-
-lug 13, 2025 5:22:45 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 23762
-
-lug 13, 2025 5:22:45 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 23,76
-
-lug 13, 2025 5:22:46 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 146782
-
-lug 13, 2025 5:22:46 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 146,78
-
-lug 13, 2025 5:22:53 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 19488
-
-lug 13, 2025 5:22:53 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 19,49
-
-lug 13, 2025 5:22:55 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 24745
-
-lug 13, 2025 5:22:55 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 24,75
-
-lug 13, 2025 5:22:56 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 170173
-
-lug 13, 2025 5:22:56 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 170,17
-
-lug 13, 2025 5:23:03 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 21860
-
-lug 13, 2025 5:23:03 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 21,86
-
-lug 13, 2025 5:23:05 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 25728
-
-lug 13, 2025 5:23:05 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 25,73
-
-lug 13, 2025 5:23:06 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 193564
-
-lug 13, 2025 5:23:06 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 193,56
-
-lug 13, 2025 5:23:13 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 24232
-
-lug 13, 2025 5:23:13 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 24,23
-
-lug 13, 2025 5:23:15 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 26711
-
-lug 13, 2025 5:23:15 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 26,71
-
-lug 13, 2025 5:23:16 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 216955
-
-lug 13, 2025 5:23:16 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 216,96
-
-lug 13, 2025 5:23:23 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 26604
-
-lug 13, 2025 5:23:23 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 26,60
-
-lug 13, 2025 5:23:25 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 27694
-
-lug 13, 2025 5:23:25 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 27,69
-
-lug 13, 2025 5:23:26 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 240346
-
-lug 13, 2025 5:23:26 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 240,35
-
-lug 13, 2025 5:23:33 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 28976
-
-lug 13, 2025 5:23:33 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 28,98
-
-lug 13, 2025 5:23:35 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 28677
-
-lug 13, 2025 5:23:35 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 28,68
-
-lug 13, 2025 5:23:36 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 263737
-
-lug 13, 2025 5:23:36 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 263,74
-
-lug 13, 2025 5:23:42 PM com.example.smarthome.coap.CoapRegistrationServer$RegistrationResource handlePOST
+lug 13, 2025 7:04:05 PM com.example.smarthome.coap.DeviceRegistry registerDevice
+INFORMAZIONI: [DeviceRegistry] Device registered sensor_humidity with IP fd00:0:0:0:204:4:4:4
+
+lug 13, 2025 7:04:05 PM com.example.smarthome.db.DatabaseManager insertDevice
+INFORMAZIONI: [DB] Trying to register device: sensor_humidity @ fd00:0:0:0:204:4:4:4:5683
+
+lug 13, 2025 7:04:05 PM com.example.smarthome.coap.CoapRegistrationServer$DiscoveryResource handleGET
+INFORMAZIONI: Discovery request received
+lug 13, 2025 7:04:05 PM com.example.smarthome.coap.CoapRegistrationServer$DiscoveryResource handleGET
+INFORMAZIONI: [DISCOVERY] Responding with: sensor_temp@fd00:0:0:0:202:2:2:2-5683
+lug 13, 2025 7:04:05 PM com.example.smarthome.db.DatabaseManager insertDevice
+INFORMAZIONI: [DB] Device successfully registered: sensor_humidity @ fd00:0:0:0:204:4:4:4:5683
+
+lug 13, 2025 7:04:05 PM com.example.smarthome.coap.CoapRegistrationServer$RegistrationResource handlePOST
+INFORMAZIONI: [REGISTRATION] Starting sensor observing for coap://fd00:0:0:0:204:4:4:4/sensors/humidity
+lug 13, 2025 7:04:05 PM com.example.smarthome.coap.DeviceObserverManager observeNode
+INFORMAZIONI: [OBSERVER] Observing coap://[fd00:0:0:0:204:4:4:4]/sensors/humidity
+lug 13, 2025 7:04:05 PM com.example.smarthome.coap.CoapRegistrationServer$RegistrationResource handlePOST
 INFORMAZIONI: Received registration request
-lug 13, 2025 5:23:42 PM com.example.smarthome.coap.DeviceRegistry registerDevice
-INFORMAZIONI: [DeviceRegistry] Device registered actuator_light with IP fd00:0:0:0:f6ce:367a:c9b8:6ec8
+lug 13, 2025 7:04:05 PM com.example.smarthome.coap.DeviceRegistry registerDevice
+INFORMAZIONI: [DeviceRegistry] Device registered actuator_temp with IP fd00:0:0:0:205:5:5:5
 
-lug 13, 2025 5:23:42 PM com.example.smarthome.db.DatabaseManager insertDevice
-INFORMAZIONI: [DB] Trying to register device: actuator_light @ fd00:0:0:0:f6ce:367a:c9b8:6ec8:5683
+lug 13, 2025 7:04:05 PM com.example.smarthome.db.DatabaseManager insertDevice
+INFORMAZIONI: [DB] Trying to register device: actuator_temp @ fd00:0:0:0:205:5:5:5:5683
 
-lug 13, 2025 5:23:42 PM com.example.smarthome.db.DatabaseManager insertDevice
-INFORMAZIONI: [DB] Device successfully registered: actuator_light @ fd00:0:0:0:f6ce:367a:c9b8:6ec8:5683
+lug 13, 2025 7:04:05 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 37816
 
-lug 13, 2025 5:23:43 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 31348
+lug 13, 2025 7:04:05 PM com.example.smarthome.db.DatabaseManager insertDevice
+INFORMAZIONI: [DB] Device successfully registered: actuator_temp @ fd00:0:0:0:205:5:5:5:5683
 
-lug 13, 2025 5:23:43 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 31,35
+lug 13, 2025 7:04:05 PM com.example.smarthome.coap.CoapRegistrationServer$RegistrationResource handlePOST
+INFORMAZIONI: [REGISTRATION] Starting sensor observing for coap://fd00:0:0:0:205:5:5:5/sensors/temp
+lug 13, 2025 7:04:05 PM com.example.smarthome.coap.DeviceObserverManager observeNode
+INFORMAZIONI: [OBSERVER] Observing coap://[fd00:0:0:0:205:5:5:5]/actuators/temp_status
+lug 13, 2025 7:04:05 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 37,816
 
-lug 13, 2025 5:23:45 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 29660
+lug 13, 2025 7:04:05 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node actuator_temp @ fd00:0:0:0:205:5:5:5:5683 reported: 0
 
-lug 13, 2025 5:23:45 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 29,66
-
-lug 13, 2025 5:23:46 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 287128
-
-lug 13, 2025 5:23:46 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 287,13
-
-lug 13, 2025 5:23:47 PM com.example.smarthome.coap.CoapRegistrationServer$DiscoveryResource handleGET
-INFORMAZIONI: Discovery request received
-lug 13, 2025 5:23:47 PM com.example.smarthome.coap.CoapRegistrationServer$DiscoveryResource handleGET
-INFORMAZIONI: [DISCOVERY] Responding with: sensor_temp@fd00:0:0:0:f6ce:36dd:e552:6326-5683
-lug 13, 2025 5:23:49 PM com.example.smarthome.coap.CoapRegistrationServer$DiscoveryResource handleGET
-INFORMAZIONI: Discovery request received
-lug 13, 2025 5:23:49 PM com.example.smarthome.coap.CoapRegistrationServer$DiscoveryResource handleGET
-INFORMAZIONI: [DISCOVERY] Responding with: sensor_light@fd00:0:0:0:f6ce:36cc:e20:721-5683
-lug 13, 2025 5:23:51 PM com.example.smarthome.coap.CoapRegistrationServer$DiscoveryResource handleGET
-INFORMAZIONI: Discovery request received
-lug 13, 2025 5:23:51 PM com.example.smarthome.coap.CoapRegistrationServer$DiscoveryResource handleGET
-INFORMAZIONI: [DISCOVERY] Responding with: sensor_humidity@fd00:0:0:0:f6ce:36fa:435f:f3d6-5683
-lug 13, 2025 5:23:53 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 33720
-
-lug 13, 2025 5:23:53 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 33,72
-
-lug 13, 2025 5:23:55 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 30643
-
-lug 13, 2025 5:23:55 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 30,64
-
-lug 13, 2025 5:23:56 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 310519
-
-lug 13, 2025 5:23:56 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 310,52
-
-lug 13, 2025 5:24:01 PM com.example.smarthome.commands.ThresholdManager setThresholds
-INFORMAZIONI: Setting threshold for actuator_light: min=34,00, max=0,00
-lug 13, 2025 5:24:01 PM com.example.smarthome.commands.ThresholdManager setThresholds
-INFORMAZIONI: Using URI: coap://[fd00:0:0:0:f6ce:367a:c9b8:6ec8]/actuators/light_th
-lug 13, 2025 5:24:01 PM com.example.smarthome.commands.ThresholdManager setThresholds
-INFORMAZIONI: Payload: min=34000
-lug 13, 2025 5:24:03 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 36092
-
-lug 13, 2025 5:24:03 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 36,09
-
-lug 13, 2025 5:24:05 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 31626
-
-lug 13, 2025 5:24:05 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 31,63
-
-lug 13, 2025 5:24:06 PM com.example.smarthome.commands.ThresholdManager getThresholds
-INFORMAZIONI: Using URI: coap://[fd00:0:0:0:f6ce:367a:c9b8:6ec8]/actuators/light_th
-lug 13, 2025 5:24:06 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 333910
-
-lug 13, 2025 5:24:06 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 333,91
-
-lug 13, 2025 5:24:06 PM com.example.smarthome.commands.ThresholdManager getThresholds
-INFORMAZIONI: Response: min=34000
-lug 13, 2025 5:24:13 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 38464
-
-lug 13, 2025 5:24:13 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 38,46
-
-lug 13, 2025 5:24:15 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 32609
-
-lug 13, 2025 5:24:15 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 32,61
-
-lug 13, 2025 5:24:16 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 357301
-
-lug 13, 2025 5:24:16 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 357,30
-
-lug 13, 2025 5:24:23 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 40836
-
-lug 13, 2025 5:24:23 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 40,84
-
-lug 13, 2025 5:24:25 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 33592
-
-lug 13, 2025 5:24:25 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 33,59
-
-lug 13, 2025 5:24:26 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 380692
-
-lug 13, 2025 5:24:26 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 380,69
-
-lug 13, 2025 5:24:33 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 43208
-
-lug 13, 2025 5:24:33 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 43,21
-
-lug 13, 2025 5:24:35 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 34575
-
-lug 13, 2025 5:24:35 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 34,58
-
-lug 13, 2025 5:24:36 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 404083
-
-lug 13, 2025 5:24:36 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 404,08
-
-lug 13, 2025 5:24:43 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 45580
-
-lug 13, 2025 5:24:43 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 45,58
-
-lug 13, 2025 5:24:45 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 35558
-
-lug 13, 2025 5:24:45 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 35,56
-
-lug 13, 2025 5:24:46 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 427474
-
-lug 13, 2025 5:24:46 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 427,47
-
-lug 13, 2025 5:24:53 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 47952
-
-lug 13, 2025 5:24:53 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 47,95
-
-lug 13, 2025 5:24:55 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 36541
-
-lug 13, 2025 5:24:55 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 36,54
-
-lug 13, 2025 5:24:56 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 450865
-
-lug 13, 2025 5:24:56 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 450,87
-
-lug 13, 2025 5:25:03 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 50324
-
-lug 13, 2025 5:25:03 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 50,32
-
-lug 13, 2025 5:25:05 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 37524
-
-lug 13, 2025 5:25:05 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 37,52
-
-lug 13, 2025 5:25:06 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 474256
-
-lug 13, 2025 5:25:06 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 474,26
-
-lug 13, 2025 5:25:13 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 52696
-
-lug 13, 2025 5:25:13 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 52,70
-
-lug 13, 2025 5:25:15 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 38507
-
-lug 13, 2025 5:25:15 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 38,51
-
-lug 13, 2025 5:25:16 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 497647
-
-lug 13, 2025 5:25:16 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 497,65
-
-lug 13, 2025 5:25:23 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 55068
-
-lug 13, 2025 5:25:23 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 55,07
-
-lug 13, 2025 5:25:25 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 39490
-
-lug 13, 2025 5:25:25 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 39,49
-
-lug 13, 2025 5:25:26 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 500000
-
-lug 13, 2025 5:25:26 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 500,00
-
-lug 13, 2025 5:25:33 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 57440
-
-lug 13, 2025 5:25:33 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 57,44
-
-lug 13, 2025 5:25:35 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 40000
-
-lug 13, 2025 5:25:35 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 40,00
-
-lug 13, 2025 5:25:36 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 476609
-
-lug 13, 2025 5:25:36 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 476,61
-
-lug 13, 2025 5:25:43 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 59812
-
-lug 13, 2025 5:25:43 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 59,81
-
-lug 13, 2025 5:25:45 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 39017
-
-lug 13, 2025 5:25:45 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 39,02
-
-lug 13, 2025 5:25:46 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 453218
-
-lug 13, 2025 5:25:46 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 453,22
-
-lug 13, 2025 5:25:53 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 62184
-
-lug 13, 2025 5:25:53 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 62,18
-
-lug 13, 2025 5:25:55 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 38034
-
-lug 13, 2025 5:25:55 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 38,03
-
-lug 13, 2025 5:25:56 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 429827
-
-lug 13, 2025 5:25:56 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 429,83
-
-lug 13, 2025 5:26:03 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 64556
-
-lug 13, 2025 5:26:03 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 64,56
-
-lug 13, 2025 5:26:05 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 37051
-
-lug 13, 2025 5:26:05 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 37,05
-
-lug 13, 2025 5:26:06 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 406436
-
-lug 13, 2025 5:26:06 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 406,44
-
-lug 13, 2025 5:26:13 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 66928
-
-lug 13, 2025 5:26:13 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 66,93
-
-lug 13, 2025 5:26:15 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 36068
-
-lug 13, 2025 5:26:15 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 36,07
-
-lug 13, 2025 5:26:16 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 383045
-
-lug 13, 2025 5:26:16 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 383,05
-
-lug 13, 2025 5:26:23 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 69300
-
-lug 13, 2025 5:26:23 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 69,30
-
-lug 13, 2025 5:26:25 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 35085
-
-lug 13, 2025 5:26:25 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 35,09
-
-lug 13, 2025 5:26:26 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 359654
-
-lug 13, 2025 5:26:26 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 359,65
-
-lug 13, 2025 5:26:33 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 71672
-
-lug 13, 2025 5:26:33 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 71,67
-
-lug 13, 2025 5:26:35 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 34102
-
-lug 13, 2025 5:26:35 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 34,10
-
-lug 13, 2025 5:26:36 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 336263
-
-lug 13, 2025 5:26:36 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 336,26
-
-lug 13, 2025 5:26:42 PM com.example.smarthome.coap.CoapRegistrationServer$RegistrationResource handlePOST
+lug 13, 2025 7:04:05 PM com.example.smarthome.coap.CoapRegistrationServer$RegistrationResource handlePOST
 INFORMAZIONI: Received registration request
-lug 13, 2025 5:26:42 PM com.example.smarthome.coap.DeviceRegistry registerDevice
-INFORMAZIONI: [DeviceRegistry] Device registered actuator_temp with IP fd00:0:0:0:f6ce:361b:a683:bc9c
+lug 13, 2025 7:04:05 PM com.example.smarthome.coap.DeviceRegistry registerDevice
+INFORMAZIONI: [DeviceRegistry] Device registered sensor_light with IP fd00:0:0:0:203:3:3:3
 
-lug 13, 2025 5:26:42 PM com.example.smarthome.db.DatabaseManager insertDevice
-INFORMAZIONI: [DB] Trying to register device: actuator_temp @ fd00:0:0:0:f6ce:361b:a683:bc9c:5683
+lug 13, 2025 7:04:05 PM com.example.smarthome.db.DatabaseManager insertDevice
+INFORMAZIONI: [DB] Trying to register device: sensor_light @ fd00:0:0:0:203:3:3:3:5683
 
-lug 13, 2025 5:26:42 PM com.example.smarthome.db.DatabaseManager insertDevice
-INFORMAZIONI: [DB] Device successfully registered: actuator_temp @ fd00:0:0:0:f6ce:361b:a683:bc9c:5683
+lug 13, 2025 7:04:05 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_actuator: actuator_temp = 0,000
 
-lug 13, 2025 5:26:43 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 74044
+lug 13, 2025 7:04:05 PM com.example.smarthome.db.DatabaseManager insertDevice
+INFORMAZIONI: [DB] Device successfully registered: sensor_light @ fd00:0:0:0:203:3:3:3:5683
 
-lug 13, 2025 5:26:43 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 74,04
+lug 13, 2025 7:04:05 PM com.example.smarthome.coap.CoapRegistrationServer$RegistrationResource handlePOST
+INFORMAZIONI: [REGISTRATION] Starting sensor observing for coap://fd00:0:0:0:203:3:3:3/sensors/light
+lug 13, 2025 7:04:05 PM com.example.smarthome.coap.DeviceObserverManager observeNode
+INFORMAZIONI: [OBSERVER] Observing coap://[fd00:0:0:0:203:3:3:3]/sensors/light
+lug 13, 2025 7:04:05 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 268443
 
-lug 13, 2025 5:26:45 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 33119
+lug 13, 2025 7:04:05 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 268,443
 
-lug 13, 2025 5:26:45 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 33,12
-
-lug 13, 2025 5:26:46 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 312872
-
-lug 13, 2025 5:26:46 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 312,87
-
-lug 13, 2025 5:26:47 PM com.example.smarthome.coap.CoapRegistrationServer$DiscoveryResource handleGET
+lug 13, 2025 7:04:06 PM com.example.smarthome.coap.CoapRegistrationServer$DiscoveryResource handleGET
 INFORMAZIONI: Discovery request received
-lug 13, 2025 5:26:47 PM com.example.smarthome.coap.CoapRegistrationServer$DiscoveryResource handleGET
-INFORMAZIONI: [DISCOVERY] Responding with: sensor_temp@fd00:0:0:0:f6ce:36dd:e552:6326-5683
-lug 13, 2025 5:26:50 PM com.example.smarthome.coap.CoapRegistrationServer$DiscoveryResource handleGET
+lug 13, 2025 7:04:06 PM com.example.smarthome.coap.CoapRegistrationServer$DiscoveryResource handleGET
+INFORMAZIONI: [DISCOVERY] Responding with: sensor_light@fd00:0:0:0:203:3:3:3-5683
+lug 13, 2025 7:04:07 PM com.example.smarthome.coap.CoapRegistrationServer$DiscoveryResource handleGET
 INFORMAZIONI: Discovery request received
-lug 13, 2025 5:26:50 PM com.example.smarthome.coap.CoapRegistrationServer$DiscoveryResource handleGET
-INFORMAZIONI: [DISCOVERY] Responding with: sensor_light@fd00:0:0:0:f6ce:36cc:e20:721-5683
-lug 13, 2025 5:26:52 PM com.example.smarthome.coap.CoapRegistrationServer$DiscoveryResource handleGET
+lug 13, 2025 7:04:07 PM com.example.smarthome.coap.CoapRegistrationServer$DiscoveryResource handleGET
+INFORMAZIONI: [DISCOVERY] Responding with: sensor_humidity@fd00:0:0:0:204:4:4:4-5683
+lug 13, 2025 7:04:07 PM com.example.smarthome.coap.CoapRegistrationServer$DiscoveryResource handleGET
 INFORMAZIONI: Discovery request received
-lug 13, 2025 5:26:52 PM com.example.smarthome.coap.CoapRegistrationServer$DiscoveryResource handleGET
-INFORMAZIONI: [DISCOVERY] Responding with: sensor_humidity@fd00:0:0:0:f6ce:36fa:435f:f3d6-5683
-lug 13, 2025 5:26:53 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 76416
+lug 13, 2025 7:04:08 PM com.example.smarthome.coap.CoapRegistrationServer$DiscoveryResource handleGET
+INFORMAZIONI: [DISCOVERY] Responding with: sensor_temp@fd00:0:0:0:202:2:2:2-5683
+lug 13, 2025 7:04:08 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 14915
 
-lug 13, 2025 5:26:53 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 76,42
+lug 13, 2025 7:04:08 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 14,915
 
-lug 13, 2025 5:26:55 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 32136
+lug 13, 2025 7:04:09 PM com.example.smarthome.coap.CoapRegistrationServer$DiscoveryResource handleGET
+INFORMAZIONI: Discovery request received
+lug 13, 2025 7:04:09 PM com.example.smarthome.coap.CoapRegistrationServer$DiscoveryResource handleGET
+INFORMAZIONI: [DISCOVERY] Responding with: sensor_light@fd00:0:0:0:203:3:3:3-5683
+lug 13, 2025 7:04:10 PM com.example.smarthome.coap.CoapRegistrationServer$DiscoveryResource handleGET
+INFORMAZIONI: Discovery request received
+lug 13, 2025 7:04:10 PM com.example.smarthome.coap.CoapRegistrationServer$DiscoveryResource handleGET
+INFORMAZIONI: [DISCOVERY] Responding with: sensor_humidity@fd00:0:0:0:204:4:4:4-5683
+lug 13, 2025 7:04:12 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 15898
 
-lug 13, 2025 5:26:55 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 32,14
+lug 13, 2025 7:04:12 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 15,898
 
-lug 13, 2025 5:26:56 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 289481
+lug 13, 2025 7:04:12 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 35444
 
-lug 13, 2025 5:26:56 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 289,48
+lug 13, 2025 7:04:12 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 35,444
 
-lug 13, 2025 5:27:00 PM com.example.smarthome.commands.ThresholdManager setThresholds
-INFORMAZIONI: Setting threshold for actuator_temp: min=123,00, max=3456,00
-lug 13, 2025 5:27:00 PM com.example.smarthome.commands.ThresholdManager setThresholds
-INFORMAZIONI: Using URI: coap://[fd00:0:0:0:f6ce:361b:a683:bc9c]/actuators/temp_th
-lug 13, 2025 5:27:00 PM com.example.smarthome.commands.ThresholdManager setThresholds
-INFORMAZIONI: Payload: min=123000&max=3456000
-lug 13, 2025 5:27:03 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 78788
+lug 13, 2025 7:04:13 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 245052
 
-lug 13, 2025 5:27:03 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 78,79
+lug 13, 2025 7:04:13 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 245,052
 
-lug 13, 2025 5:27:05 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 31153
+lug 13, 2025 7:04:17 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 16881
 
-lug 13, 2025 5:27:05 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 31,15
+lug 13, 2025 7:04:17 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 16,881
 
-lug 13, 2025 5:27:06 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 266090
+lug 13, 2025 7:04:17 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 33072
 
-lug 13, 2025 5:27:06 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 266,09
+lug 13, 2025 7:04:17 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 33,072
 
-lug 13, 2025 5:27:10 PM com.example.smarthome.commands.ThresholdManager setThresholds
-INFORMAZIONI: Setting threshold for actuator_temp: min=10,00, max=40,00
-lug 13, 2025 5:27:10 PM com.example.smarthome.commands.ThresholdManager setThresholds
-INFORMAZIONI: Using URI: coap://[fd00:0:0:0:f6ce:361b:a683:bc9c]/actuators/temp_th
-lug 13, 2025 5:27:10 PM com.example.smarthome.commands.ThresholdManager setThresholds
-INFORMAZIONI: Payload: min=10000&max=40000
-lug 13, 2025 5:27:13 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 81160
+lug 13, 2025 7:04:18 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 221661
 
-lug 13, 2025 5:27:13 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 81,16
+lug 13, 2025 7:04:18 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 221,661
 
-lug 13, 2025 5:27:15 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 30170
+lug 13, 2025 7:04:20 PM com.example.smarthome.commands.ThresholdManager getThresholds
+INFORMAZIONI: Using URI: coap://[fd00:0:0:0:205:5:5:5]/actuators/temp_th
+lug 13, 2025 7:04:20 PM com.example.smarthome.commands.ThresholdManager getThresholds
+INFORMAZIONI: Response: min=18000&max=25000
+lug 13, 2025 7:04:22 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 17864
 
-lug 13, 2025 5:27:15 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 30,17
+lug 13, 2025 7:04:22 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 17,864
 
-lug 13, 2025 5:27:16 PM com.example.smarthome.commands.ThresholdManager getThresholds
-INFORMAZIONI: Using URI: coap://[fd00:0:0:0:f6ce:361b:a683:bc9c]/actuators/temp_th
-lug 13, 2025 5:27:16 PM com.example.smarthome.commands.ThresholdManager getThresholds
-INFORMAZIONI: Response: min=10000&max=40000
-lug 13, 2025 5:27:16 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 242699
+lug 13, 2025 7:04:22 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 30700
 
-lug 13, 2025 5:27:16 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 242,70
+lug 13, 2025 7:04:22 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 30,700
 
-lug 13, 2025 5:27:23 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 83532
+lug 13, 2025 7:04:23 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 198270
 
-lug 13, 2025 5:27:23 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 83,53
+lug 13, 2025 7:04:23 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 198,270
 
-lug 13, 2025 5:27:25 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 29187
+lug 13, 2025 7:04:27 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 18847
 
-lug 13, 2025 5:27:25 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 29,19
+lug 13, 2025 7:04:27 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 18,847
 
-lug 13, 2025 5:27:26 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 219308
+lug 13, 2025 7:04:27 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 28328
 
-lug 13, 2025 5:27:26 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 219,31
+lug 13, 2025 7:04:27 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 28,328
 
-lug 13, 2025 5:27:33 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 85904
+lug 13, 2025 7:04:28 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 174879
 
-lug 13, 2025 5:27:33 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 85,90
+lug 13, 2025 7:04:28 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 174,879
 
-lug 13, 2025 5:27:35 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 28204
+lug 13, 2025 7:04:32 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 19830
 
-lug 13, 2025 5:27:35 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 28,20
+lug 13, 2025 7:04:32 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 19,830
 
-lug 13, 2025 5:27:36 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 195917
+lug 13, 2025 7:04:32 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 25956
 
-lug 13, 2025 5:27:36 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 195,92
+lug 13, 2025 7:04:32 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 25,956
 
-lug 13, 2025 5:27:43 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 88276
+lug 13, 2025 7:04:33 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 151488
 
-lug 13, 2025 5:27:43 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 88,28
+lug 13, 2025 7:04:33 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 151,488
 
-lug 13, 2025 5:27:45 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 27221
+lug 13, 2025 7:04:37 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 20813
 
-lug 13, 2025 5:27:45 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 27,22
+lug 13, 2025 7:04:37 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 20,813
 
-lug 13, 2025 5:27:46 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 172526
+lug 13, 2025 7:04:37 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 23584
 
-lug 13, 2025 5:27:46 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 172,53
+lug 13, 2025 7:04:37 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 23,584
 
-lug 13, 2025 5:27:53 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 90000
+lug 13, 2025 7:04:38 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 128097
 
-lug 13, 2025 5:27:53 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 90,00
+lug 13, 2025 7:04:38 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 128,097
 
-lug 13, 2025 5:27:55 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 26238
+lug 13, 2025 7:04:38 PM com.example.smarthome.commands.ThresholdManager setThresholds
+INFORMAZIONI: Setting threshold for actuator_light: min=300,00, max=0,00
+lug 13, 2025 7:04:38 PM com.example.smarthome.commands.ThresholdManager setThresholds
+INFORMAZIONI: Using URI: coap://[fd00:0:0:0:206:6:6:6]/actuators/light_th
+lug 13, 2025 7:04:38 PM com.example.smarthome.commands.ThresholdManager setThresholds
+INFORMAZIONI: Payload: min=300000
+lug 13, 2025 7:04:42 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 21796
 
-lug 13, 2025 5:27:55 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 26,24
+lug 13, 2025 7:04:42 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 21,796
 
-lug 13, 2025 5:27:56 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 149135
+lug 13, 2025 7:04:42 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 21212
 
-lug 13, 2025 5:27:56 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 149,14
+lug 13, 2025 7:04:42 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 21,212
 
-lug 13, 2025 5:28:03 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 87628
+lug 13, 2025 7:04:43 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 104706
 
-lug 13, 2025 5:28:03 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 87,63
+lug 13, 2025 7:04:43 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 104,706
 
-lug 13, 2025 5:28:05 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 25255
+lug 13, 2025 7:04:44 PM com.example.smarthome.commands.ThresholdManager getThresholds
+INFORMAZIONI: Using URI: coap://[fd00:0:0:0:206:6:6:6]/actuators/light_th
+lug 13, 2025 7:04:44 PM com.example.smarthome.commands.ThresholdManager getThresholds
+INFORMAZIONI: Response: min=300000
+lug 13, 2025 7:04:47 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 22779
 
-lug 13, 2025 5:28:05 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 25,26
+lug 13, 2025 7:04:47 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 22,779
 
-lug 13, 2025 5:28:06 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 125744
+lug 13, 2025 7:04:47 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 18840
 
-lug 13, 2025 5:28:06 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 125,74
+lug 13, 2025 7:04:47 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 18,840
 
-lug 13, 2025 5:28:13 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 85256
+lug 13, 2025 7:04:48 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 100000
 
-lug 13, 2025 5:28:13 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 85,26
+lug 13, 2025 7:04:48 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 100,000
 
-lug 13, 2025 5:28:15 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 24272
+lug 13, 2025 7:04:52 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 23762
 
-lug 13, 2025 5:28:15 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 24,27
+lug 13, 2025 7:04:52 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 23,762
 
-lug 13, 2025 5:28:16 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 102353
+lug 13, 2025 7:04:52 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 16468
 
-lug 13, 2025 5:28:16 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 102,35
+lug 13, 2025 7:04:52 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 16,468
 
-lug 13, 2025 5:28:23 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 82884
+lug 13, 2025 7:04:53 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 123391
 
-lug 13, 2025 5:28:23 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 82,88
+lug 13, 2025 7:04:53 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 123,391
 
-lug 13, 2025 5:28:25 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 23289
+lug 13, 2025 7:04:57 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 24745
 
-lug 13, 2025 5:28:25 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 23,29
+lug 13, 2025 7:04:57 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 24,745
 
-lug 13, 2025 5:28:26 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 100000
+lug 13, 2025 7:04:57 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 14096
 
-lug 13, 2025 5:28:26 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 100,00
+lug 13, 2025 7:04:57 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 14,096
 
-lug 13, 2025 5:28:33 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 80512
+lug 13, 2025 7:04:58 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 146782
 
-lug 13, 2025 5:28:33 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 80,51
+lug 13, 2025 7:04:58 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 146,782
 
-lug 13, 2025 5:28:35 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 22306
+lug 13, 2025 7:05:02 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 25728
 
-lug 13, 2025 5:28:35 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 22,31
+lug 13, 2025 7:05:02 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 25,728
 
-lug 13, 2025 5:28:36 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 123391
+lug 13, 2025 7:05:02 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 11724
 
-lug 13, 2025 5:28:36 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 123,39
+lug 13, 2025 7:05:02 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 11,724
 
-lug 13, 2025 5:28:43 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 78140
+lug 13, 2025 7:05:03 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 170173
 
-lug 13, 2025 5:28:43 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 78,14
+lug 13, 2025 7:05:03 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 170,173
 
-lug 13, 2025 5:28:45 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 21323
+lug 13, 2025 7:05:04 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node actuator_light @ fd00:0:0:0:206:6:6:6:5683 reported: 1
 
-lug 13, 2025 5:28:45 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 21,32
+lug 13, 2025 7:05:04 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_actuator: actuator_light = 1,000
 
-lug 13, 2025 5:28:46 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 146782
+lug 13, 2025 7:05:07 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node actuator_temp @ fd00:0:0:0:205:5:5:5:5683 reported: 1
 
-lug 13, 2025 5:28:46 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 146,78
+lug 13, 2025 7:05:07 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_actuator: actuator_temp = 1,000
 
-lug 13, 2025 5:28:53 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 75768
+lug 13, 2025 7:05:07 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 26711
 
-lug 13, 2025 5:28:53 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 75,77
+lug 13, 2025 7:05:07 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 26,711
 
-lug 13, 2025 5:28:55 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 20340
+lug 13, 2025 7:05:07 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 10000
 
-lug 13, 2025 5:28:55 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 20,34
+lug 13, 2025 7:05:07 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 10,000
 
-lug 13, 2025 5:28:56 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 170173
+lug 13, 2025 7:05:08 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 193564
 
-lug 13, 2025 5:28:56 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 170,17
+lug 13, 2025 7:05:08 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 193,564
 
-lug 13, 2025 5:29:03 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 73396
+lug 13, 2025 7:05:12 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 27694
 
-lug 13, 2025 5:29:03 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 73,40
+lug 13, 2025 7:05:12 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 27,694
 
-lug 13, 2025 5:29:05 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 19357
+lug 13, 2025 7:05:12 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 12372
 
-lug 13, 2025 5:29:05 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 19,36
+lug 13, 2025 7:05:12 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 12,372
 
-lug 13, 2025 5:29:06 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 193564
+lug 13, 2025 7:05:13 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 216955
 
-lug 13, 2025 5:29:06 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 193,56
+lug 13, 2025 7:05:13 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 216,955
 
-lug 13, 2025 5:29:13 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 71024
+lug 13, 2025 7:05:17 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 28677
 
-lug 13, 2025 5:29:13 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 71,02
+lug 13, 2025 7:05:17 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 28,677
 
-lug 13, 2025 5:29:15 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 18374
+lug 13, 2025 7:05:17 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 14744
 
-lug 13, 2025 5:29:15 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 18,37
+lug 13, 2025 7:05:17 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 14,744
 
-lug 13, 2025 5:29:16 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 216955
+lug 13, 2025 7:05:18 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 240346
 
-lug 13, 2025 5:29:16 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 216,96
+lug 13, 2025 7:05:18 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 240,346
 
-lug 13, 2025 5:29:23 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 68652
+lug 13, 2025 7:05:22 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 29660
 
-lug 13, 2025 5:29:23 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 68,65
+lug 13, 2025 7:05:22 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 29,660
 
-lug 13, 2025 5:29:25 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 17391
+lug 13, 2025 7:05:22 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 17116
 
-lug 13, 2025 5:29:25 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 17,39
+lug 13, 2025 7:05:22 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 17,116
 
-lug 13, 2025 5:29:26 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 240346
+lug 13, 2025 7:05:23 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 263737
 
-lug 13, 2025 5:29:26 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 240,35
+lug 13, 2025 7:05:23 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 263,737
 
-lug 13, 2025 5:29:33 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 66280
+lug 13, 2025 7:05:27 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 30643
 
-lug 13, 2025 5:29:33 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 66,28
+lug 13, 2025 7:05:27 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 30,643
 
-lug 13, 2025 5:29:35 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 16408
+lug 13, 2025 7:05:27 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 19488
 
-lug 13, 2025 5:29:35 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 16,41
+lug 13, 2025 7:05:27 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 19,488
 
-lug 13, 2025 5:29:36 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 263737
+lug 13, 2025 7:05:28 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 287128
 
-lug 13, 2025 5:29:36 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 263,74
+lug 13, 2025 7:05:28 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 287,128
 
-lug 13, 2025 5:29:43 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 63908
+lug 13, 2025 7:05:32 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 31626
 
-lug 13, 2025 5:29:43 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 63,91
+lug 13, 2025 7:05:32 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 31,626
 
-lug 13, 2025 5:29:45 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 15425
+lug 13, 2025 7:05:32 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 21860
 
-lug 13, 2025 5:29:45 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 15,43
+lug 13, 2025 7:05:32 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 21,860
 
-lug 13, 2025 5:29:46 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 287128
+lug 13, 2025 7:05:33 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 310519
 
-lug 13, 2025 5:29:46 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 287,13
+lug 13, 2025 7:05:33 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 310,519
 
-lug 13, 2025 5:29:53 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 61536
+lug 13, 2025 7:05:37 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 32609
 
-lug 13, 2025 5:29:53 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 61,54
+lug 13, 2025 7:05:37 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 32,609
 
-lug 13, 2025 5:29:55 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 14442
+lug 13, 2025 7:05:37 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 24232
 
-lug 13, 2025 5:29:55 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 14,44
+lug 13, 2025 7:05:37 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 24,232
 
-lug 13, 2025 5:29:56 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 310519
+lug 13, 2025 7:05:38 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 333910
 
-lug 13, 2025 5:29:56 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 310,52
+lug 13, 2025 7:05:38 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 333,910
 
-lug 13, 2025 5:30:03 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 59164
+lug 13, 2025 7:05:42 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 33592
 
-lug 13, 2025 5:30:03 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 59,16
+lug 13, 2025 7:05:42 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 33,592
 
-lug 13, 2025 5:30:05 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 13459
+lug 13, 2025 7:05:42 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 26604
 
-lug 13, 2025 5:30:05 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 13,46
+lug 13, 2025 7:05:42 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 26,604
 
-lug 13, 2025 5:30:06 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 333910
+lug 13, 2025 7:05:43 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 357301
 
-lug 13, 2025 5:30:06 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 333,91
+lug 13, 2025 7:05:43 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 357,301
 
-lug 13, 2025 5:30:13 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 56792
+lug 13, 2025 7:05:47 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 34575
 
-lug 13, 2025 5:30:13 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 56,79
+lug 13, 2025 7:05:47 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 34,575
 
-lug 13, 2025 5:30:15 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 12476
+lug 13, 2025 7:05:47 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 28976
 
-lug 13, 2025 5:30:15 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 12,48
+lug 13, 2025 7:05:47 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 28,976
 
-lug 13, 2025 5:30:16 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 357301
+lug 13, 2025 7:05:48 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 380692
 
-lug 13, 2025 5:30:16 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 357,30
+lug 13, 2025 7:05:48 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 380,692
 
-lug 13, 2025 5:30:23 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 54420
+lug 13, 2025 7:05:52 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 35558
 
-lug 13, 2025 5:30:23 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 54,42
+lug 13, 2025 7:05:52 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 35,558
 
-lug 13, 2025 5:30:25 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 11493
+lug 13, 2025 7:05:52 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 31348
 
-lug 13, 2025 5:30:25 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 11,49
+lug 13, 2025 7:05:52 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 31,348
 
-lug 13, 2025 5:30:26 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 380692
+lug 13, 2025 7:05:53 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 404083
 
-lug 13, 2025 5:30:26 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 380,69
+lug 13, 2025 7:05:53 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 404,083
 
-lug 13, 2025 5:30:33 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 52048
+lug 13, 2025 7:05:57 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 36541
 
-lug 13, 2025 5:30:33 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 52,05
+lug 13, 2025 7:05:57 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 36,541
 
-lug 13, 2025 5:30:35 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 10510
+lug 13, 2025 7:05:57 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 33720
 
-lug 13, 2025 5:30:35 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 10,51
+lug 13, 2025 7:05:57 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 33,720
 
-lug 13, 2025 5:30:36 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 404083
+lug 13, 2025 7:05:58 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 427474
 
-lug 13, 2025 5:30:36 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 404,08
+lug 13, 2025 7:05:58 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 427,474
 
-lug 13, 2025 5:30:43 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 49676
+lug 13, 2025 7:06:02 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 37524
 
-lug 13, 2025 5:30:43 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 49,68
+lug 13, 2025 7:06:02 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 37,524
 
-lug 13, 2025 5:30:45 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 10000
+lug 13, 2025 7:06:02 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 36092
 
-lug 13, 2025 5:30:45 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 10,00
+lug 13, 2025 7:06:02 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 36,092
 
-lug 13, 2025 5:30:46 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 427474
+lug 13, 2025 7:06:03 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 450865
 
-lug 13, 2025 5:30:46 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 427,47
+lug 13, 2025 7:06:03 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 450,865
 
-lug 13, 2025 5:30:53 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 47304
+lug 13, 2025 7:06:06 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node actuator_light @ fd00:0:0:0:206:6:6:6:5683 reported: 1
 
-lug 13, 2025 5:30:53 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 47,30
+lug 13, 2025 7:06:06 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_actuator: actuator_light = 1,000
 
-lug 13, 2025 5:30:55 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 10983
+lug 13, 2025 7:06:07 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 38507
 
-lug 13, 2025 5:30:55 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 10,98
+lug 13, 2025 7:06:07 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 38,507
 
-lug 13, 2025 5:30:56 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 450865
+lug 13, 2025 7:06:07 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 38464
 
-lug 13, 2025 5:30:56 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 450,87
+lug 13, 2025 7:06:07 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 38,464
 
-lug 13, 2025 5:31:03 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 44932
+lug 13, 2025 7:06:08 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 474256
 
-lug 13, 2025 5:31:03 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 44,93
+lug 13, 2025 7:06:08 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 474,256
 
-lug 13, 2025 5:31:05 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 11966
+lug 13, 2025 7:06:09 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node actuator_temp @ fd00:0:0:0:205:5:5:5:5683 reported: 1
 
-lug 13, 2025 5:31:05 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 11,97
+lug 13, 2025 7:06:09 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_actuator: actuator_temp = 1,000
 
-lug 13, 2025 5:31:06 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 474256
+lug 13, 2025 7:06:12 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 39490
 
-lug 13, 2025 5:31:06 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 474,26
+lug 13, 2025 7:06:12 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 39,490
 
-lug 13, 2025 5:31:13 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 42560
+lug 13, 2025 7:06:12 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 40836
 
-lug 13, 2025 5:31:13 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 42,56
+lug 13, 2025 7:06:12 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 40,836
 
-lug 13, 2025 5:31:15 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 12949
+lug 13, 2025 7:06:13 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 497647
 
-lug 13, 2025 5:31:15 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 12,95
+lug 13, 2025 7:06:13 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 497,647
 
-lug 13, 2025 5:31:16 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 497647
+lug 13, 2025 7:06:17 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 40000
 
-lug 13, 2025 5:31:16 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 497,65
+lug 13, 2025 7:06:17 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 40,000
 
-lug 13, 2025 5:31:23 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 40188
+lug 13, 2025 7:06:17 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 43208
 
-lug 13, 2025 5:31:23 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 40,19
+lug 13, 2025 7:06:17 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 43,208
 
-lug 13, 2025 5:31:25 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 13932
+lug 13, 2025 7:06:18 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 500000
 
-lug 13, 2025 5:31:25 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 13,93
+lug 13, 2025 7:06:18 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 500,000
 
-lug 13, 2025 5:31:26 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 500000
+lug 13, 2025 7:06:22 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 39017
 
-lug 13, 2025 5:31:26 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 500,00
+lug 13, 2025 7:06:22 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 39,017
 
-lug 13, 2025 5:31:33 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 37816
+lug 13, 2025 7:06:22 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 45580
 
-lug 13, 2025 5:31:33 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 37,82
+lug 13, 2025 7:06:22 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 45,580
 
-lug 13, 2025 5:31:35 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 14915
+lug 13, 2025 7:06:23 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 476609
 
-lug 13, 2025 5:31:35 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 14,92
+lug 13, 2025 7:06:23 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 476,609
 
-lug 13, 2025 5:31:36 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 476609
+lug 13, 2025 7:06:27 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 38034
 
-lug 13, 2025 5:31:36 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 476,61
+lug 13, 2025 7:06:27 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 38,034
 
-lug 13, 2025 5:31:43 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 35444
+lug 13, 2025 7:06:27 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 47952
 
-lug 13, 2025 5:31:43 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 35,44
+lug 13, 2025 7:06:27 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 47,952
 
-lug 13, 2025 5:31:45 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 15898
+lug 13, 2025 7:06:28 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 453218
 
-lug 13, 2025 5:31:45 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 15,90
+lug 13, 2025 7:06:28 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 453,218
 
-lug 13, 2025 5:31:46 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 453218
+lug 13, 2025 7:06:32 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 37051
 
-lug 13, 2025 5:31:46 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 453,22
+lug 13, 2025 7:06:32 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 37,051
 
-lug 13, 2025 5:31:53 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 33072
+lug 13, 2025 7:06:32 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 50324
 
-lug 13, 2025 5:31:53 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 33,07
+lug 13, 2025 7:06:32 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 50,324
 
-lug 13, 2025 5:31:55 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 16881
+lug 13, 2025 7:06:33 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 429827
 
-lug 13, 2025 5:31:55 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 16,88
+lug 13, 2025 7:06:33 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 429,827
 
-lug 13, 2025 5:31:56 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 429827
+lug 13, 2025 7:06:37 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 36068
 
-lug 13, 2025 5:31:56 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 429,83
+lug 13, 2025 7:06:37 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 36,068
 
-lug 13, 2025 5:32:03 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 30700
+lug 13, 2025 7:06:37 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 52696
 
-lug 13, 2025 5:32:03 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 30,70
+lug 13, 2025 7:06:37 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 52,696
 
-lug 13, 2025 5:32:05 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 17864
+lug 13, 2025 7:06:38 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 406436
 
-lug 13, 2025 5:32:05 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 17,86
+lug 13, 2025 7:06:38 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 406,436
 
-lug 13, 2025 5:32:06 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 406436
+lug 13, 2025 7:06:42 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 35085
 
-lug 13, 2025 5:32:06 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 406,44
+lug 13, 2025 7:06:42 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 35,085
 
-lug 13, 2025 5:32:13 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 28328
+lug 13, 2025 7:06:42 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 55068
 
-lug 13, 2025 5:32:13 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 28,33
+lug 13, 2025 7:06:42 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 55,068
 
-lug 13, 2025 5:32:15 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 18847
+lug 13, 2025 7:06:43 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 383045
 
-lug 13, 2025 5:32:15 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 18,85
+lug 13, 2025 7:06:43 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 383,045
 
-lug 13, 2025 5:32:16 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 383045
+lug 13, 2025 7:06:47 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 34102
 
-lug 13, 2025 5:32:16 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 383,05
+lug 13, 2025 7:06:47 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 34,102
 
-lug 13, 2025 5:32:23 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 25956
+lug 13, 2025 7:06:47 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 57440
 
-lug 13, 2025 5:32:23 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 25,96
+lug 13, 2025 7:06:47 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 57,440
 
-lug 13, 2025 5:32:25 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 19830
+lug 13, 2025 7:06:48 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 359654
 
-lug 13, 2025 5:32:25 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 19,83
+lug 13, 2025 7:06:48 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 359,654
 
-lug 13, 2025 5:32:26 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 359654
+lug 13, 2025 7:06:52 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 33119
 
-lug 13, 2025 5:32:26 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 359,65
+lug 13, 2025 7:06:52 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 33,119
 
-lug 13, 2025 5:32:33 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 23584
+lug 13, 2025 7:06:52 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 59812
 
-lug 13, 2025 5:32:33 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 23,58
+lug 13, 2025 7:06:52 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 59,812
 
-lug 13, 2025 5:32:35 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 20813
+lug 13, 2025 7:06:53 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 336263
 
-lug 13, 2025 5:32:35 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 20,81
+lug 13, 2025 7:06:53 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 336,263
 
-lug 13, 2025 5:32:36 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 336263
+lug 13, 2025 7:06:57 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 32136
 
-lug 13, 2025 5:32:36 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 336,26
+lug 13, 2025 7:06:57 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 32,136
 
-lug 13, 2025 5:32:43 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 21212
+lug 13, 2025 7:06:57 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 62184
 
-lug 13, 2025 5:32:43 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 21,21
+lug 13, 2025 7:06:57 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 62,184
 
-lug 13, 2025 5:32:45 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 21796
+lug 13, 2025 7:06:58 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 312872
 
-lug 13, 2025 5:32:45 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 21,80
+lug 13, 2025 7:06:58 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 312,872
 
-lug 13, 2025 5:32:46 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 312872
+lug 13, 2025 7:07:02 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 31153
 
-lug 13, 2025 5:32:46 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 312,87
+lug 13, 2025 7:07:02 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 31,153
 
-lug 13, 2025 5:32:53 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 18840
+lug 13, 2025 7:07:02 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 64556
 
-lug 13, 2025 5:32:53 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 18,84
+lug 13, 2025 7:07:02 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 64,556
 
-lug 13, 2025 5:32:55 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 22779
+lug 13, 2025 7:07:03 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 289481
 
-lug 13, 2025 5:32:55 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 22,78
+lug 13, 2025 7:07:03 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 289,481
 
-lug 13, 2025 5:32:56 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 289481
+lug 13, 2025 7:07:07 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 30170
 
-lug 13, 2025 5:32:56 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 289,48
+lug 13, 2025 7:07:07 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 30,170
 
-lug 13, 2025 5:33:03 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 16468
+lug 13, 2025 7:07:07 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 66928
 
-lug 13, 2025 5:33:03 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 16,47
+lug 13, 2025 7:07:07 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 66,928
 
-lug 13, 2025 5:33:05 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 23762
+lug 13, 2025 7:07:08 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 266090
 
-lug 13, 2025 5:33:05 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 23,76
+lug 13, 2025 7:07:08 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 266,090
 
-lug 13, 2025 5:33:06 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 266090
+lug 13, 2025 7:07:08 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node actuator_light @ fd00:0:0:0:206:6:6:6:5683 reported: 1
 
-lug 13, 2025 5:33:06 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 266,09
+lug 13, 2025 7:07:08 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_actuator: actuator_light = 1,000
 
-lug 13, 2025 5:33:13 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 14096
+lug 13, 2025 7:07:11 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node actuator_temp @ fd00:0:0:0:205:5:5:5:5683 reported: 1
 
-lug 13, 2025 5:33:13 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 14,10
+lug 13, 2025 7:07:11 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_actuator: actuator_temp = 1,000
 
-lug 13, 2025 5:33:15 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 24745
+lug 13, 2025 7:07:12 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 29187
 
-lug 13, 2025 5:33:15 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 24,75
+lug 13, 2025 7:07:12 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 29,187
 
-lug 13, 2025 5:33:16 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 242699
+lug 13, 2025 7:07:12 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 69300
 
-lug 13, 2025 5:33:16 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 242,70
+lug 13, 2025 7:07:12 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 69,300
 
-lug 13, 2025 5:33:23 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 11724
+lug 13, 2025 7:07:13 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 242699
 
-lug 13, 2025 5:33:23 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 11,72
+lug 13, 2025 7:07:13 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 242,699
 
-lug 13, 2025 5:33:25 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 25728
+lug 13, 2025 7:07:17 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 28204
 
-lug 13, 2025 5:33:25 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 25,73
+lug 13, 2025 7:07:17 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 28,204
 
-lug 13, 2025 5:33:26 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 219308
+lug 13, 2025 7:07:17 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 71672
 
-lug 13, 2025 5:33:26 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 219,31
+lug 13, 2025 7:07:17 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 71,672
 
-lug 13, 2025 5:33:33 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_humidity @ fd00:0:0:0:f6ce:36fa:435f:f3d6:5683 reported: 10000
+lug 13, 2025 7:07:18 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 219308
 
-lug 13, 2025 5:33:33 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 10,00
+lug 13, 2025 7:07:18 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 219,308
 
-lug 13, 2025 5:33:35 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_temp @ fd00:0:0:0:f6ce:36dd:e552:6326:5683 reported: 26711
+lug 13, 2025 7:07:22 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 27221
 
-lug 13, 2025 5:33:35 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 26,71
+lug 13, 2025 7:07:22 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 27,221
 
-lug 13, 2025 5:33:36 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
-INFORMAZIONI: [OBSERVER] Sensor sensor_light @ fd00:0:0:0:f6ce:36cc:e20:721:5683 reported: 195917
+lug 13, 2025 7:07:22 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 74044
 
-lug 13, 2025 5:33:36 PM com.example.smarthome.db.DatabaseManager insertSensorData
-INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 195,92
+lug 13, 2025 7:07:22 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 74,044
+
+lug 13, 2025 7:07:23 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 195917
+
+lug 13, 2025 7:07:23 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 195,917
+
+lug 13, 2025 7:07:27 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 26238
+
+lug 13, 2025 7:07:27 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 26,238
+
+lug 13, 2025 7:07:27 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 76416
+
+lug 13, 2025 7:07:27 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 76,416
+
+lug 13, 2025 7:07:28 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 172526
+
+lug 13, 2025 7:07:28 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 172,526
+
+lug 13, 2025 7:07:32 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 25255
+
+lug 13, 2025 7:07:32 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 25,255
+
+lug 13, 2025 7:07:32 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 78788
+
+lug 13, 2025 7:07:32 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 78,788
+
+lug 13, 2025 7:07:33 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 149135
+
+lug 13, 2025 7:07:33 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 149,135
+
+lug 13, 2025 7:07:37 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 24272
+
+lug 13, 2025 7:07:37 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 24,272
+
+lug 13, 2025 7:07:37 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 81160
+
+lug 13, 2025 7:07:37 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 81,160
+
+lug 13, 2025 7:07:38 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 125744
+
+lug 13, 2025 7:07:38 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 125,744
+
+lug 13, 2025 7:07:42 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_temp @ fd00:0:0:0:202:2:2:2:5683 reported: 23289
+
+lug 13, 2025 7:07:42 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into temperature_data: sensor_temp = 23,289
+
+lug 13, 2025 7:07:42 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_humidity @ fd00:0:0:0:204:4:4:4:5683 reported: 83532
+
+lug 13, 2025 7:07:42 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into humidity_data: sensor_humidity = 83,532
+
+lug 13, 2025 7:07:43 PM com.example.smarthome.coap.DeviceObserverManager$1 onLoad
+INFORMAZIONI: [OBSERVER] Node sensor_light @ fd00:0:0:0:203:3:3:3:5683 reported: 102353
+
+lug 13, 2025 7:07:43 PM com.example.smarthome.db.DatabaseManager insertNodeData
+INFORMAZIONI: [DB] Data inserted into light_data: sensor_light = 102,353
 

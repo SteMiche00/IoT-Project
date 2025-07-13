@@ -33,7 +33,7 @@ public class VisualizeManager {
         else {
             System.out.println("Sensors:");
             for (DeviceModel sensor : sensors) {
-                System.out.printf("- " + sensor);
+                System.out.println("- " + sensor);
             }
         }
         if(actuators.isEmpty()) {
@@ -42,7 +42,7 @@ public class VisualizeManager {
         else {
             System.out.println("Actuators:");
             for (DeviceModel actuator : actuators) {
-                System.out.printf("- " + actuator);
+                System.out.println("- " + actuator);
             }
         }
     }

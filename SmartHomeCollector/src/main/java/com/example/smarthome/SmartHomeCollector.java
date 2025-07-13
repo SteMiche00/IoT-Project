@@ -22,16 +22,12 @@ public class SmartHomeCollector {
         CoapRegistrationServer coapServer = new CoapRegistrationServer();
         coapServer.start();
         LOGGER.info("[INFO] CoAP server started on port 5683");
-
-        // Show commands
-        printCommands();
-
         
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String input;
 
-        
         while (true) {
+            printCommands();
             try {
                 System.out.print("> ");
                 input = br.readLine().trim();
@@ -53,9 +49,10 @@ public class SmartHomeCollector {
                         VisualizeManager.visualizeRecentSensorData();
                         break;
                     case "q":
-                        LOGGER.info("Closing server...");
-                        coapServer.stop();
-                        return;
+                        System.out.println("Closing server...");
+                        coapServer.stop();      
+                        coapServer.destroy();   
+                        return; 
                     default:
                         System.out.println("Command not available, Use 'help'");
                 }
@@ -63,19 +60,16 @@ public class SmartHomeCollector {
                 e.printStackTrace();
             }
         }
-        
     }
 
     private static void printCommands() {
-        System.out.println("Available Commands:");
+        System.out.println("\nAvailable Commands:");
         System.out.println("1. Set thresholds for actuators");
         System.out.println("2. Show current thresholds");
         System.out.println("3. Show registered devices");
         System.out.println("4. Show recent sensor data");
-        //System.out.println("5. Avvia/ferma observing dei sensori");
-        //System.out.println("6. Esporta dati in CSV");
+        System.out.println("q. Show recent sensor data");
         System.out.println("0. Show help");
-        System.out.println("q. Close the application");
     }
 
     public static void printHelp() {
@@ -93,17 +87,8 @@ public class SmartHomeCollector {
     System.out.println("4. Show recent sensor data");
     System.out.println("   → Display the most recent values recorded by each sensor.\n");
 
-    System.out.println("5. Start/Stop sensor polling");
-    System.out.println("   → Enable or disable periodic polling of sensors.\n");
-
-    System.out.println("6. Export sensor data to CSV");
-    System.out.println("   → Export recent sensor readings into a CSV file for analysis.\n");
-
     System.out.println("0. Show this help menu");
     System.out.println("   → Print this list of available commands.\n");
-
-    System.out.println("q. Exit application");
-    System.out.println("   → Shut down the CoAP server and exit the application.\n");
 }
 
 }

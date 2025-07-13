@@ -50,11 +50,9 @@ public class CoapRegistrationServer extends CoapServer {
                 exchange.respond(CoAP.ResponseCode.INTERNAL_SERVER_ERROR, "Failed");
                 return;
             }
-            if(type.contains("sensor")) {
-                String[] parts = type.split("_");
-                LOGGER.info(String.format("[REGISTRATION] Starting sensor observing for " + "coap://" + ip + "/sensors/" + parts[1]));
-                DeviceObserverManager.observeSensor(type, ip, port);
-            }
+            String[] parts = type.split("_");
+            LOGGER.info(String.format("[REGISTRATION] Starting sensor observing for " + "coap://" + ip + "/sensors/" + parts[1]));
+            DeviceObserverManager.observeNode(type, ip, port);
             exchange.respond(CoAP.ResponseCode.CREATED, "Registered".getBytes(StandardCharsets.UTF_8));
         }
 

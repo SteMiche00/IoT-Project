@@ -68,15 +68,19 @@ public class DatabaseManager {
         return devices;
     }
 
-    public static void insertSensorData(String name, Double value) {
+    public static void insertNodeData(String name, Double value) {
         String table;
 
-        if (name.contains("light")) {
+        if (name.contains("sensor_light")) {
             table = "light_data";
-        } else if (name.contains("temp")) {
+        } else if (name.contains("sensor_temp")) {
             table = "temperature_data";
-        } else if (name.contains("humidity")) {
+        } else if (name.contains("sensor_humidity")) {
             table = "humidity_data";
+        } else if (name.contains("actuator_temp")) {
+            table = "temperature_actuator";
+        } else if (name.contains("actuator_light")) {
+            table = "light_actuator";
         } else {
             LOGGER.severe("[DB] Unknown sensor type for name: " + name);
             return;
@@ -86,10 +90,14 @@ public class DatabaseManager {
 
         try (Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, name);
-            stmt.setDouble(2, value/1000);
+            if(name.contains("sensor"))
+                stmt.setDouble(2, value/1000);
+            else if(name.contains("actuator"))
+                stmt.setInt(2, value.intValue());
             stmt.setTimestamp(3, Timestamp.from(Instant.now()));
             stmt.executeUpdate();
-            LOGGER.info(String.format("[DB] Data inserted into %s: %s = %.2f%n", table, name, value/1000));
+            value = (name.contains("sensor")) ? value/1000 : value;
+            LOGGER.info(String.format("[DB] Data inserted into %s: %s = %.3f%n", table, name, value));
         } catch (SQLException e) {
             LOGGER.severe("[DB] Error inserting sensor data: " + e.getMessage());
             throw new RuntimeException("Database error", e);
@@ -97,7 +105,7 @@ public class DatabaseManager {
     }
 
     public static void cleanup(){
-        String[] tables = {"device_registry", "light_data", "temperature_data", "humidity_data"};
+        String[] tables = {"device_registry", "light_data", "temperature_data", "humidity_data", "temperature_actuator", "light_actuator"};
         try (Connection conn = connect()) {
             for (String table : tables) {
                 String sql = "DELETE FROM " + table;

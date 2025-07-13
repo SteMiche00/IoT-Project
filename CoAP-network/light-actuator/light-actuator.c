@@ -30,7 +30,7 @@ static coap_message_t request[1];
 static coap_observee_t *obs[3];
 
 static float min_light = 200.0;
-static bool status = false; //true = actuator ON, false = actuator OFF
+static int status = 0; 
 
 static float room_data[3] = {0, 0, 0}; // 0=temp, 1=light, 2=humidity
 static float room_occupancy_probability[2] = {0, 0};
@@ -122,7 +122,7 @@ static void res_get_status_handler(coap_message_t *request,
                                       uint16_t preferred_size,
                                       int32_t *offset){
   int len = snprintf((char *)buffer, preferred_size,
-                     "status=%d",
+                     "%d",
                      status);
 
   coap_set_header_content_format(response, TEXT_PLAIN);
@@ -283,7 +283,7 @@ notification_callback(coap_observee_t *obs, void *notification,
         if(energy_saving){
           printf("[ACTUATOR LIGHT] Energy saving mode: ON - Device OFF\n");
           leds_off(LEDS_RED);
-          status = false;
+          status = 0;
           return;
         }
       } else {
@@ -297,11 +297,11 @@ notification_callback(coap_observee_t *obs, void *notification,
 
         if(value < min_light) {
           leds_on(LEDS_RED);
-          status = true;
+          status = 1;
           printf("[ACTUATOR LIGHT] Light LOW - Light ON (RED LED)\n");
         } else {
           leds_off(LEDS_RED);
-          status = false;
+          status = 0;
           printf("[ACTUATOR LIGHT] Light OK - Light OFF\n");
         } 
       } else if(sensor_index == 2) {
@@ -342,7 +342,7 @@ PROCESS_THREAD(light_actuator, ev, data)
 
   coap_engine_init();
   coap_activate_resource(&res_thresholds, "actuators/light_th");
-  coap_activate_resource(&res_status, "actuators/status");
+  coap_activate_resource(&res_status, "actuators/light_status");
   res_status.flags |= IS_OBSERVABLE;
 
   printf("[ACTUATOR LIGHT] Starting CoAP Light Actuator\n");
@@ -414,7 +414,7 @@ PROCESS_THREAD(light_actuator, ev, data)
           leds_off(LEDS_BLUE);
           leds_off(LEDS_YELLOW);
         } else {
-          leds_oN(LEDS_BLUE);
+          leds_on(LEDS_BLUE);
           leds_on(LEDS_YELLOW);
         }
         es_led_state = !es_led_state;

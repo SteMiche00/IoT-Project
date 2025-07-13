@@ -31,7 +31,7 @@ static coap_observee_t *obs[3];
 
 static float min_temp = 18.0;
 static float max_temp = 25.0;
-static bool status = false; //true = actuator ON, false = actuator OFF
+static int status = 0; 
 
 static float room_data[3] = {0, 0, 0}; // 0=temp, 1=light, 2=humidity
 static float room_occupancy_probability[2] = {0, 0};
@@ -136,7 +136,7 @@ static void res_get_status_handler(coap_message_t *request,
                                       uint16_t preferred_size,
                                       int32_t *offset){
   int len = snprintf((char *)buffer, preferred_size,
-                     "status=%d",
+                     "%d",
                      status);
 
   coap_set_header_content_format(response, TEXT_PLAIN);
@@ -298,7 +298,7 @@ notification_callback(coap_observee_t *obs, void *notification,
           printf("[ACTUATOR TEMP] Energy saving mode: ON - Device OFF\n");
           leds_off(LEDS_RED);
           leds_off(LEDS_GREEN);
-          status = false;
+          status = 0;
           return;
         }
       } else {
@@ -313,17 +313,17 @@ notification_callback(coap_observee_t *obs, void *notification,
         if(value < min_temp) {
           leds_on(LEDS_RED);
           leds_off(LEDS_GREEN);
-          status = true;
+          status = 1;
           printf("[ACTUATOR TEMP] Temperature LOW - Heater ON (RED LED)\n");
         } else if(value > max_temp) {
           leds_off(LEDS_RED);
           leds_on(LEDS_GREEN);
-          status = true;
+          status = 1;
           printf("[ACTUATOR TEMP] Temperature HIGH - Cooler ON (GREEN LED)\n");
         } else {
           leds_off(LEDS_RED);
           leds_off(LEDS_GREEN);
-          status = false;
+          status = 0;
           printf("[ACTUATOR TEMP] Temperature in range - Device OFF \n");
         }
 
@@ -367,7 +367,7 @@ PROCESS_THREAD(temp_actuator, ev, data)
 
   coap_engine_init();
   coap_activate_resource(&res_thresholds, "actuators/temp_th");
-  coap_activate_resource(&res_status, "actuators/status");
+  coap_activate_resource(&res_status, "actuators/temp_status");
   res_status.flags |= IS_OBSERVABLE;
 
   printf("[ACTUATOR TEMP] Starting CoAP Temp Actuator\n");

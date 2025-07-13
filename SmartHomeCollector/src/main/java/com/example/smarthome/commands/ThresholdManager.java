@@ -69,7 +69,7 @@ public class ThresholdManager {
     }
 
     public static void getThresholds(){
-        System.out.println("Choose actuator to configure:");
+        System.out.println("Choose actuator to visualize:");
         System.out.println("1. Light");
         System.out.println("2. Temperature");
         System.out.print("> ");
