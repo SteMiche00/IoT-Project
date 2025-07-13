@@ -119,12 +119,12 @@ public class DatabaseManager {
         String parts[] = actuatorType.split("_");
          try (Connection conn = connect();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
-    
+            stmt.setString(1, actuatorType);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     String ip = rs.getString("ip");
                    
-                    return "coap://[" + ip + "]/" + actuatorType + "actuators/" + parts[1].trim();
+                    return "coap://[" + ip + "]/actuators/" + parts[1].trim() + "_th";
                 } else {
                     LOGGER.warning("[DB] No device found for actuator type: " + actuatorType);
                     return null;

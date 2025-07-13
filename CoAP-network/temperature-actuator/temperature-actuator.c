@@ -93,16 +93,28 @@ static void res_post_threshold_handler(coap_message_t *request,
 
   printf("[ACTUATOR TEMP] Received CoAP POST: %s\n", buffer);
 
-  float new_min, new_max;
-  if (sscanf((char *)buffer, "min=%f&max=%f", &new_min, &new_max) == 3) {
-    min_temp = new_min;
-    max_temp = new_max;
-    printf("[ACTUATOR TEMP] Updated thresholds: min_temp=%.3f, max_temp=%.3f\n",
-           min_temp, max_temp);
-    coap_set_status_code(response, CHANGED_2_04);
-  } else {
-    coap_set_status_code(response, BAD_REQUEST_4_00);
-  }
+  float new_min = -1, new_max = -1;
+  char *token = strtok((char *)buffer, "&");
+  while (token != NULL) {
+     if (sscanf(token, "min=%f", &new_min) == 1) {
+       printf("[DEBUG] Parsed min=%.2f\n", new_min);
+     } else if (sscanf(token, "max=%f", &new_max) == 1) {
+       printf("[DEBUG] Parsed max=%.2f\n", new_max);
+     } else {
+       printf("[DEBUG] Token ignorato: %s\n", token);
+     }
+     token = strtok(NULL, "&");
+   }
+
+   if (new_min >= 0 && new_max >= 0) {
+     min_temp = new_min;
+     max_temp = new_max;
+     printf("[ACTUATOR TEMP] Updated thresholds: min_temp=%.3f, max_temp=%.3f\n", min_temp, max_temp);
+     coap_set_status_code(response, CHANGED_2_04);
+   } else {
+     printf("[ERROR] Failed to parse thresholds: min=%.2f, max=%.2f\n", new_min, new_max);
+     coap_set_status_code(response, BAD_REQUEST_4_00);
+   }
 }
 
 static void res_get_threshold_handler(coap_message_t *request,

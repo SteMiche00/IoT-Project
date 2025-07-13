@@ -1,4 +1,4 @@
-CONTIKI_PROJECT = temperature-sensor
+CONTIKI_PROJECT = temp-sensor
 
 all: $(CONTIKI_PROJECT)
 

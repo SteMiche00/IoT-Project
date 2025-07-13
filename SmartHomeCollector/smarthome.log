@@ -1,22 +1,22 @@
-lug 11, 2025 4:44:31 PM com.example.smarthome.db.DatabaseManager cleanup
+lug 13, 2025 3:56:04 PM com.example.smarthome.db.DatabaseManager cleanup
 INFORMAZIONI: [DB] Cleared table: device_registry
 
-lug 11, 2025 4:44:31 PM com.example.smarthome.db.DatabaseManager cleanup
+lug 13, 2025 3:56:04 PM com.example.smarthome.db.DatabaseManager cleanup
 INFORMAZIONI: [DB] Cleared table: light_data
 
-lug 11, 2025 4:44:31 PM com.example.smarthome.db.DatabaseManager cleanup
+lug 13, 2025 3:56:04 PM com.example.smarthome.db.DatabaseManager cleanup
 INFORMAZIONI: [DB] Cleared table: temperature_data
 
-lug 11, 2025 4:44:31 PM com.example.smarthome.db.DatabaseManager cleanup
+lug 13, 2025 3:56:04 PM com.example.smarthome.db.DatabaseManager cleanup
 INFORMAZIONI: [DB] Cleared table: humidity_data
 
-lug 11, 2025 4:44:31 PM org.eclipse.californium.core.network.config.NetworkConfig createStandardWithFile
+lug 13, 2025 3:56:04 PM org.eclipse.californium.core.network.config.NetworkConfig createStandardWithFile
 INFORMAZIONI: Loading standard properties from file Californium.properties
-lug 11, 2025 4:44:31 PM org.eclipse.californium.core.CoapServer start
+lug 13, 2025 3:56:04 PM org.eclipse.californium.core.CoapServer start
 INFORMAZIONI: Starting server
-lug 11, 2025 4:44:31 PM org.eclipse.californium.core.CoapServer start
+lug 13, 2025 3:56:04 PM org.eclipse.californium.core.CoapServer start
 INFORMAZIONI: No endpoints have been defined for server, setting up server endpoint on default port 5683
-lug 11, 2025 4:44:31 PM org.eclipse.californium.core.network.CoapEndpoint start
+lug 13, 2025 3:56:04 PM org.eclipse.californium.core.network.CoapEndpoint start
 INFORMAZIONI: Starting endpoint at 0.0.0.0/0.0.0.0:5683
-lug 11, 2025 4:44:31 PM com.example.smarthome.SmartHomeCollector main
+lug 13, 2025 3:56:04 PM com.example.smarthome.SmartHomeCollector main
 INFORMAZIONI: [INFO] CoAP server started on port 5683

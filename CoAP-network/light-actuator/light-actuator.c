@@ -93,7 +93,7 @@ static void res_post_threshold_handler(coap_message_t *request,
   printf("[ACTUATOR LIGHT] Received CoAP POST: %s\n", buffer);
 
   float new_min;
-  if (sscanf((char *)buffer, "min=%f", &new_min) == 3) {
+  if (sscanf((char *)buffer, "min=%f", &new_min) == 1) {
     min_light = new_min;
     printf("[ACTUATOR LIGHT] Updated thresholds: min_light=%.3f\n",
            min_light);
