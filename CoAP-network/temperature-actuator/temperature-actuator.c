@@ -436,13 +436,16 @@ PROCESS_THREAD(temp_actuator, ev, data)
     if(ev == PROCESS_EVENT_TIMER && data == &led_timer) {
       if(energy_saving) {
         if(es_led_state) {
+          leds_off(LEDS_BLUE);
           leds_off(LEDS_YELLOW);
         } else {
+          leds_on(LEDS_BLUE);
           leds_on(LEDS_YELLOW);
         }
         es_led_state = !es_led_state;
         etimer_set(&led_timer, CLOCK_SECOND); 
       } else {
+        leds_off(LEDS_BLUE);
         leds_off(LEDS_YELLOW);
         es_led_state = false;
       }
@@ -457,6 +460,7 @@ PROCESS_THREAD(temp_actuator, ev, data)
         printf("[ACTUATOR TEMP] Energy saving mode: ON\n");
       } else {
         leds_off(LEDS_YELLOW);
+        leds_off(LEDS_BLUE);
         printf("[ACTUATOR TEMP] Energy saving mode: OFF\n");
       }
     }
